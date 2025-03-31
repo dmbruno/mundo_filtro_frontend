@@ -7,37 +7,34 @@
     align-items: center;
     justify-content: flex-start;
     padding-top: 20px;
-    margin-left: 60px;
-
-}
-
-.vehiculos-table {
-    max-height: 400px;
-    width: 1000px;
-    overflow-y: auto;
-    border-collapse: separate; /* ✅ Permite los bordes redondeados */
-    border-spacing: 0; /* ✅ Evita separación entre celdas */
-    border-radius: 10px; /* ✅ Redondea las esquinas */
-    overflow: hidden; /* ✅ Evita que los bordes desaparezcan */
-    border: 1px solid #ccc; /* ✅ Mantiene el borde */
-}
-
-/* Logo */
-.vehiculos-container .logo {
+  }
+  
+  /* Logo */
+  .logo {
     width: 400px;
     margin-bottom: 20px;
-}
-
-/* Barra de filtros */
-.filtro-container {
+  }
+  
+  /* Título */
+  .titulo {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    text-align: center;
+    margin-top: 50px;
+    margin-bottom: 20px;
+    font-size: 26px;
+    font-weight: bolder;
+  }
+  
+  /* Filtros */
+  .filtro-container {
     display: flex;
     justify-content: center;
     gap: 10px;
     margin-bottom: 20px;
     width: 80%;
-}
-
-.filtro-container input {
+  }
+  
+  .filtro-container input {
     width: 200px;
     padding: 10px;
     border-radius: 10px;
@@ -45,51 +42,73 @@
     outline: none;
     font-size: 14px;
     background-color: rgba(255, 255, 255, 0.8);
-}
-
-/* Botón aplicar filtros */
-.btn-filtrar {
-    padding: 10px 15px;
+  }
+  
+  /* Contenedor de tabla con altura limitada */
+  .tabla-scroll-container {
+    width: 100%;
+    max-width: 1200px;
+    max-height: 400px;
+    overflow-y: auto;
     border-radius: 10px;
-    border: none;
-    background-color: #a1c29a;
-    color: white;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background 0.3s ease;
-}
-
-.btn-filtrar:hover {
-    background-color: #8ea78a;
-}
-
-/* Tabla */
-
-
-
-
-
-/* Encabezados */
-th,
-td {
-    padding: 15px;
-    text-align: left;
-    border-bottom: 1px solid #ddd;
-    color: black;
-}
-
-th {
+    border: 1px solid white;
+  }
+  
+  /* Tabla */
+  .vehiculos-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 10px;
+  }
+  
+  
+  .vehiculos-table thead {
+    position: sticky;
+    top: 0;
     background-color: #333;
     color: white;
-}
+    z-index: 2;
+  }
+  
+  
+  .vehiculos-table td {
+    padding: 15px;
+    text-align: center;
+    
+    border-bottom: 1px solid #ddd;
+    color: black;
+  }
 
-/* Hover en filas */
-tbody tr:hover {
+  .vehiculos-table th{
+    padding: 15px;
+    text-align: center;
+    background-color: #333;
+    border-bottom: 1px solid #ddd;
+    color: white;
+  }
+
+
+
+  .encabezado th {
+    
+    text-align: center;
+  }
+  
+  /* Hover */
+  .vehiculos-table tbody tr:hover {
     background-color: rgba(255, 255, 255, 0.5);
-}
-
-/* Botones de acción */
-.btn-ver {
+  }
+  
+  /* Acciones */
+  .acciones-cell {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  .btn-ver {
     background-color: #3498db;
     border: none;
     padding: 8px;
@@ -98,13 +117,13 @@ tbody tr:hover {
     color: white;
     transition: background 0.3s ease;
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.4);
-}
-
-.btn-ver:hover {
+  }
+  
+  .btn-ver:hover {
     background-color: #2980b9;
-}
-
-.btn-editar {
+  }
+  
+  .btn-editar {
     background-color: #f1c40f;
     border: none;
     padding: 8px;
@@ -113,23 +132,23 @@ tbody tr:hover {
     color: black;
     transition: background 0.3s ease;
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.4);
-}
-
-.btn-editar:hover {
+  }
+  
+  .btn-editar:hover {
     background-color: #d4ac0d;
-}
-
-.btn-eliminar {
+  }
+  
+  .btn-eliminar {
     background-color: #e74c3c;
     border: none;
     padding: 8px;
     border-radius: 5px;
     cursor: pointer;
     color: white;
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.4);
     transition: background 0.3s ease;
-}
-
-.btn-eliminar:hover {
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.4);
+  }
+  
+  .btn-eliminar:hover {
     background-color: #c0392b;
-}
+  }

@@ -31,7 +31,7 @@ const VehiculosPage = () => {
         api
             .get("/vehiculos/")
             .then((response) => {
-                
+
                 setVehiculos(response.data);
                 setIsLoading(false); // Al terminar la carga, se cambia el estado
             })
@@ -47,7 +47,7 @@ const VehiculosPage = () => {
 
     useEffect(() => {
         if (!isClienteLoading && clienteSeleccionado) {
-            
+
         }
     }, [isClienteLoading, clienteSeleccionado]); // Este efecto se ejecuta cuando el cliente ha sido cargado
 
@@ -56,7 +56,7 @@ const VehiculosPage = () => {
         api
             .get("/clientes")
             .then((response) => {
-                
+
                 setClientes(response.data);
                 setIsLoading(false); // Al terminar la carga, se cambia el estado
             })
@@ -71,73 +71,73 @@ const VehiculosPage = () => {
         cargarClientes();
     }, []);
 
-    
 
-const eliminarVehiculo = (vehiculoId) => {
-    const toastId = `confirm-delete-${vehiculoId}`;
-    const eliminar = () => {
-        api.delete(`/vehiculos/${vehiculoId}`)
-            .then(() => {
-                setVehiculos((prevVehiculos) =>
-                    prevVehiculos.filter((vehiculo) => vehiculo.id !== vehiculoId)
-                );
-                toast.dismiss(toastId); 
-                toast.success("✅ Vehículo y servicios eliminados correctamente");
-            })
-            .catch((error) => {
-                console.error("Error al eliminar el vehículo:", error);
-                toast.error("❌ Error al eliminar el vehículo");
-            });
+
+    const eliminarVehiculo = (vehiculoId) => {
+        const toastId = `confirm-delete-${vehiculoId}`;
+        const eliminar = () => {
+            api.delete(`/vehiculos/${vehiculoId}`)
+                .then(() => {
+                    setVehiculos((prevVehiculos) =>
+                        prevVehiculos.filter((vehiculo) => vehiculo.id !== vehiculoId)
+                    );
+                    toast.dismiss(toastId);
+                    toast.success("✅ Vehículo y servicios eliminados correctamente");
+                })
+                .catch((error) => {
+                    console.error("Error al eliminar el vehículo:", error);
+                    toast.error("❌ Error al eliminar el vehículo");
+                });
+        };
+
+        toast.warn(
+            <div style={{ textAlign: "center" }}>
+                🚗 <strong>Si eliminas este vehículo, también se borrarán los servicios asociados.</strong><br />
+                <div style={{ marginTop: "10px", display: "flex", justifyContent: "center", gap: "10px" }}>
+                    <button
+                        style={{
+                            backgroundColor: "#ff4444",
+                            color: "white",
+                            border: "none",
+                            padding: "8px 15px",
+                            borderRadius: "5px",
+                            cursor: "pointer"
+                        }}
+                        onClick={eliminar}
+                    >
+                        🗑️ Eliminar
+                    </button>
+                    <button
+                        style={{
+                            backgroundColor: "#cccccc",
+                            color: "#333",
+                            border: "none",
+                            padding: "8px 15px",
+                            borderRadius: "5px",
+                            cursor: "pointer"
+                        }}
+                        onClick={() => toast.dismiss()}
+                    >
+                        ❌ Cancelar
+                    </button>
+                </div>
+            </div>,
+            {
+                position: "top-center",
+                autoClose: false,
+                closeOnClick: false,
+                draggable: false,
+                closeButton: false,
+                toastId: `confirm-delete-${vehiculoId}`
+            }
+        );
     };
-
-    toast.warn(
-        <div style={{ textAlign: "center" }}>
-            🚗 <strong>Si eliminas este vehículo, también se borrarán los servicios asociados.</strong><br />
-            <div style={{ marginTop: "10px", display: "flex", justifyContent: "center", gap: "10px" }}>
-                <button
-                    style={{
-                        backgroundColor: "#ff4444",
-                        color: "white",
-                        border: "none",
-                        padding: "8px 15px",
-                        borderRadius: "5px",
-                        cursor: "pointer"
-                    }}
-                    onClick={eliminar}
-                >
-                    🗑️ Eliminar
-                </button>
-                <button
-                    style={{
-                        backgroundColor: "#cccccc",
-                        color: "#333",
-                        border: "none",
-                        padding: "8px 15px",
-                        borderRadius: "5px",
-                        cursor: "pointer"
-                    }}
-                    onClick={() => toast.dismiss()}
-                >
-                    ❌ Cancelar
-                </button>
-            </div>
-        </div>,
-        {
-            position: "top-center",
-            autoClose: false,
-            closeOnClick: false,
-            draggable: false,
-            closeButton: false,
-            toastId: `confirm-delete-${vehiculoId}`
-        }
-    );
-};
 
     const eliminarServiciosAsociados = (vehiculoId) => {
         api
             .delete(`/servicios/${vehiculoId}`)
             .then(() => {
-                
+
             })
             .catch((error) => {
                 console.error("Error al eliminar los servicios:", error);
@@ -159,7 +159,7 @@ const eliminarVehiculo = (vehiculoId) => {
             : true)
     );
     const abrirModal = (vehiculo, editar = false, modoVista = "detalle") => {
-        
+
         setVehiculoSeleccionado(vehiculo);
         setModoEdicion(editar);
         setModalAbierto(true);
@@ -192,21 +192,21 @@ const eliminarVehiculo = (vehiculoId) => {
     };
 
     const abrirListaServicios = async (vehiculo, setVehiculoSeleccionado, setClienteSeleccionado, setServiciosVehiculo) => {
-        
-    
+
+
         try {
             const response = await api.get(`/servicios/vehiculo/${vehiculo.id}`);
             const serviciosDelVehiculo = response.data;
-    
-            
-    
+
+
+
             setVehiculoSeleccionado({
                 id: vehiculo.id,
                 dominio: vehiculo.dominio,
                 marca: vehiculo.marca,
                 modelo: vehiculo.modelo
             });
-    
+
             // 📌 Aquí corregimos para obtener el cliente del vehículo si no hay servicios
             setClienteSeleccionado(
                 serviciosDelVehiculo.length > 0
@@ -221,7 +221,7 @@ const eliminarVehiculo = (vehiculoId) => {
                         apellido: vehiculo.cliente.apellido
                     }
             );
-    
+
             setServiciosVehiculo(serviciosDelVehiculo);
         } catch (error) {
             console.error("Error al obtener servicios del vehículo:", error);
@@ -230,17 +230,17 @@ const eliminarVehiculo = (vehiculoId) => {
 
 
     const actualizarServicios = () => {
-        
+
 
         cargarVehiculos(); // ✅ Vuelve a cargar los vehículos y servicios actualizados
     };
-    
+
 
 
     return (
         <div className="vehiculos-container">
             <img src={logo} alt="Mundo Filtro" className="logo" />
-            <h1>Vehículos</h1>
+            <h1 className="titulo">🚗 Vehículos</h1>
 
             <div className="filtro-container">
                 <input
@@ -267,56 +267,59 @@ const eliminarVehiculo = (vehiculoId) => {
                     value={filtroCliente}
                     onChange={(e) => setFiltroCliente(e.target.value)}
                 />
-                
+
             </div>
 
-            <table className="vehiculos-table">
-                <thead>
-                    <tr className="encabezado">
-                        <th>Marca</th>
-                        <th>Modelo</th>
-                        <th>Dominio</th>
-                        <th>Cliente</th>
-                        <th>Acciones</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {isLoading ? ( // Agregado: Control de carga
-                        <tr>
-                            <td colSpan="5">Cargando...</td>
+            <div className="tabla-scroll-container">
+                <table className="vehiculos-table">
+                    <thead>
+                        <tr className="encabezado">
+                            <th>Marca</th>
+                            <th>Modelo</th>
+                            <th>Dominio</th>
+                            <th>Cliente</th>
+                            <th>Acciones</th>
                         </tr>
-                    ) : (
-                        vehiculosFiltrados.map((vehiculo) => (
-                            <tr key={vehiculo.id}>
-                                <td>{vehiculo.marca}</td>
-                                <td>{vehiculo.modelo}</td>
-                                <td>{vehiculo.dominio}</td>
-                                <td>{vehiculo.cliente}</td>
-                                <td>
-                                    <button
-                                        className="btn-ver"
-                                        onClick={() => abrirModal(vehiculo)}
-                                    >
-                                        🔍
-                                    </button>
-                                    <button
-                                        onClick={() => abrirModal(vehiculo, true)}
-                                        className="btn-editar"
-                                    >
-                                        ✏️
-                                    </button>
-                                    <button
-                                        className="btn-eliminar"
-                                        onClick={() => eliminarVehiculo(vehiculo.id)} // Llamar a la función de eliminar
-                                    >
-                                        🗑️
-                                    </button>
-                                </td>
+                    </thead>
+                    <tbody>
+                        {isLoading ? ( // Agregado: Control de carga
+                            <tr>
+                                <td colSpan="5">Cargando...</td>
                             </tr>
-                        ))
-                    )}
-                </tbody>
-            </table>
+                        ) : (
+                            vehiculosFiltrados.map((vehiculo) => (
+                                <tr key={vehiculo.id}>
+                                    <td>{vehiculo.marca}</td>
+                                    <td>{vehiculo.modelo}</td>
+                                    <td>{vehiculo.dominio}</td>
+                                    <td>{vehiculo.cliente}</td>
+                                    <td className="acciones-cell">
+                                        <button
+                                            className="btn-ver"
+                                            onClick={() => abrirModal(vehiculo)}
+                                        >
+                                            🔍
+                                        </button>
+                                        <button
+                                            onClick={() => abrirModal(vehiculo, true)}
+                                            className="btn-editar"
+                                        >
+                                            ✏️
+                                        </button>
+                                        <button
+                                            className="btn-eliminar"
+                                            onClick={() => eliminarVehiculo(vehiculo.id)} // Llamar a la función de eliminar
+                                        >
+                                            🗑️
+
+                                        </button>
+                                    </td>
+                                </tr>
+                            ))
+                        )}
+                    </tbody>
+                </table>
+            </div>
 
             {modalAbierto && (
                 <VehiculoModal

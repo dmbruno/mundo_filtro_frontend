@@ -1,185 +1,187 @@
-/* components/servicios/NuevoServicioModal.css */
-.modal-overlay {
+.nuevo-servicio-overlay {
+  all: initial;
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.7);
+  
+  backdrop-filter: blur(2px);
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 1000;
+  z-index: 9999;
+  width: 140%;
+  margin-left: -130px;
+  padding-bottom: 150px;
+  
 }
 
-.modal-content-servicios {
-  background: #fff;
-  padding: 35px;
-  border-radius: 8px;
-  width: 100%;
-  max-width: 600px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  color: black;
-  z-index: 1100;
-
-
+.nuevo-servicio-content {
+  background: #fdfdfd;
+    padding: 35px 35px;
+    /* 🔥 Antes 30px 45px */
+    border-radius: 15px;
+    text-align: center;
+    width: 950px;
+    max-width: 95%;
+    margin-top: 20px;
+    /* 🔥 Antes 50px */
+    margin-bottom: 30px;
+    /* 🔥 También achico abajo */
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    overflow-y: visible;
+    margin-top: 80px;
 }
 
+.modal-notch-servicios {
+  width: 50px;
+  height: 4px;
+  background: #aaa;
+  border-radius: 2px;
+  margin: 0 auto 10px;
+}
 
 .modal-title {
-  font-size: 24px;
-  margin-bottom: 20px;
+  font-size: 20px;
+  font-weight: bold;
   color: black;
-  text-align: center;
 }
 
 .modal-subtitle {
-  text-align: center;
-  font-size: 18px;
+  font-size: 20px;
   font-weight: bold;
+  font-style: italic;
+  color: black;
+  margin-top: -10px;
+}
+
+.nuevo-servicio-grid {
+  display: flex;
+  gap: 40px;
+  margin-top: 20px;
+}
+
+.nuevo-servicio-col {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  /* 🔥 Que todo quede bien distribuido */
+  gap: 20px;
 }
 
 .form-group-servicios {
-  margin-bottom: 15px;
-
+  display: flex;
+  flex-direction: column;
+  text-align: start;
 }
+
+
+
 
 .form-group-servicios label {
-  display: block;
-  font-size: 1em;
-  color: black;
-}
-
-.form-group-servicios input,
-.form-group-servicios textarea {
-  width: 100%;
-  padding: 10px;
-  margin-top: 5px;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-  color: black;
-}
-
-.modal-actions {
-  margin-top: 30px;
-  display: flex;
-  justify-content: space-between;
-  gap: 15px;
-}
-
-.btn-cerrar {
-  background-color: #f44336;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  cursor: pointer;
-}
-
-.btn-guardar {
-  background-color: #4caf50;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  cursor: pointer;
-}
-
-.btn-cerrar:hover,
-.btn-guardar:hover {
-  opacity: 0.8;
-}
-
-.formulario {
-  color: black;
-}
-
-.modal-label {
-  color: black;
-}
-
-.checkbox-group-servicios {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  /* 2 columnas */
-  text-align: center;
-  gap: 10px;
-  /* Espacio entre items */
-  background-color: #eeebeb;
-  padding: 15px;
-  border-radius: 8px;
-  margin-top: 15px;
+  font-weight: bold;
   font-size: 14px;
-  color: #333;
-  margin-bottom: 15px;
+  margin-bottom: 4px;
+  color: black;
+
+}
+
+input[type="text"],
+input[type="number"],
+input[type="date"],
+textarea {
+  width: 100%;
+  padding: 12px;
+  font-size: 14px;
+  border: none;
+  border-radius: 5px;
+  background: #d6d4d4;
+  box-shadow: inset 0px 0px 5px rgba(0, 0, 0, 0.1), 0px 2px 4px rgba(0, 0, 0, 0.2);
+  resize: none;
+  color: black;
+}
+
+textarea {
+  height: 50px;
+  /* 🔥 Más alto que antes para más espacio */
+}
+
+/* Cuadradito de filtros */
+.checkbox-group-servicios {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  /* 🔥 Centramos verticalmente */
+  background-color: #eeebeb;
+  border-radius: 8px;
+  padding: 20px;
+  height: 100%;
+  gap: 10px;
+  border: rgba(0, 0, 0, 0.516) 1px solid;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
 }
 
 .checkbox-group-title {
-  grid-column: 1 / -1;
-  margin-bottom: -5px;
+  font-weight: bold;
+  font-size: 20px;
   text-align: center;
+  margin-bottom: 20px;
+  color: black;
+}
+
+.checkbox-group-servicios label {
+  display: flex;
+  align-items: center;
+  gap: 5px;
   font-weight: bold;
   font-size: 16px;
-  color: #444;
+  padding-left: 5px;
+  color: black;
 }
 
+.segunda-columna {
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
 
+.modal-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 30px;
+  gap: 15px;
+}
+
+.btn-cerrar-servicio,
 .btn-guardar-servicio {
-  margin: 5px;
-  background-color: rgb(42, 163, 42);
+  padding: 12px;
+  font-size: 15px;
+  font-weight: bold;
   border: none;
-  padding: 10px 20px;
   border-radius: 5px;
   cursor: pointer;
-  color: white;
-  width: 50%;
-  transition: background 0.3s ease, transform 0.2s ease;
-  box-shadow: 0px 2px 4px rgba(2, 2, 2, 0.779);
-}
-
-.btn-guardar-servicio:hover {
-  box-shadow: 3px 3px 7px rgba(0, 0, 0, 0.3);
-  transform: scale(1.05);
-  /* Efecto sutil de agrandamiento */
-}
-
-.btn-guardar-servicio:active {
-  transform: scale(0.97);
-  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3);
+  width: 100%;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+  transition: all 0.2s ease-in-out;
 }
 
 .btn-cerrar-servicio {
-  background-color: #e74d3ceb;
-  margin: 5px;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 5px;
-  cursor: pointer;
+  background-color: #ff4d4d;
   color: white;
-  width: 50%;
-  transition: background 0.3s ease, transform 0.2s ease;
-  box-shadow: 0px 2px 4px rgba(2, 2, 2, 0.779);
 }
 
-.btn-cerrar-servicio:hover {
+.btn-guardar-servicio {
+  background-color: #66bb6a;
+  color: white;
+}
+
+.btn-cerrar-servicio:hover,
+.btn-guardar-servicio:hover {
   box-shadow: 3px 3px 7px rgba(0, 0, 0, 0.3);
   transform: scale(1.05);
-  /* Efecto sutil de agrandamiento */
 }
 
-.btn-cerrar-servicio:active {
-  transform: scale(0.97);
-  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3);
-  /* Efecto sutil de agrandamiento */
-}
-
-
-
-
-
-.form-group-servicios {
-  text-align: start;
-
-}
-
-.label-servicios {
-  text-align: start;
-}
+/* Responsive */

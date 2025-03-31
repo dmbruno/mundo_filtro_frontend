@@ -14,12 +14,12 @@ const NuevoClienteModal = ({ cerrarModal, actualizarClientes }) => {
 
   const handleSubmit = () => {
     const clienteData = { nombre, apellido, cuit, telefono, email };
-  
+
     // Crear nuevo cliente
     api.post("/clientes/", clienteData)
       .then((response) => {
         // Llamar a actualizarClientes para recargar la lista de clientes
-        actualizarClientes(response.data); 
+        actualizarClientes(response.data);
         toast.success("✅ Cliente creado exitosamente", {
           position: "top-center",
           autoClose: 3000, // ⏳ Dura 3 segundos
@@ -40,7 +40,13 @@ const NuevoClienteModal = ({ cerrarModal, actualizarClientes }) => {
         <input type="text" value={apellido} onChange={(e) => setApellido(e.target.value)} placeholder="Apellido" />
         <input type="text" value={cuit} onChange={(e) => setCuit(e.target.value)} placeholder="CUIT" />
         <input type="text" value={telefono} onChange={(e) => setTelefono(e.target.value)} placeholder="Teléfono" />
-        <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Correo Electrónico" />
+        <input
+          type="email"
+          className="correo-elec"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          placeholder="Correo Electrónico"
+        />
         <div className="botones">
           <button className="btnCerrar" onClick={cerrarModal}>Cerrar</button>
           <button className="btnNew" onClick={handleSubmit}>Crear Cliente</button>

@@ -34,7 +34,7 @@ const ClientesPage = () => {
     api
       .get("/clientes/")
       .then((response) => {
-        
+
         setClientes(response.data);
       })
       .catch((error) => {
@@ -56,18 +56,27 @@ const ClientesPage = () => {
 
   const verVehiculos = (cliente) => {
     if (cliente && cliente.id) {
-        setClienteSeleccionado(cliente);
+      setClienteSeleccionado(cliente);
 
-        api.get(`/vehiculos/cliente/${cliente.id}`)
-            .then((response) => {
-                setVehiculos(response.data);
-                setVerVehiculosModalAbierto(true);
-            })
-            .catch((error) => {
-                console.error("Error al obtener los vehículos:", error);
-            });
+      api.get(`/vehiculos/cliente/${cliente.id}`)
+        .then((response) => {
+          if (response.data.length === 0) {
+            toast.info("ℹ️ Este cliente no tiene vehículos registrados", { autoClose: 3000 });
+          } else {
+            setVehiculos(response.data);
+            setVerVehiculosModalAbierto(true);
+          }
+        })
+        .catch((error) => {
+          if (error.response && error.response.status === 404) {
+            toast.info("ℹ️ Este cliente no tiene vehículos registrados", { autoClose: 3000 });
+          } else {
+            toast.error("❌ Error al obtener los vehículos", { autoClose: 3000 });
+            console.error("Error al obtener los vehículos:", error);
+          }
+        });
     }
-};
+  };
 
   const cerrarVerVehiculosModal = () => {
     setVerVehiculosModalAbierto(false);
@@ -184,24 +193,25 @@ const ClientesPage = () => {
       </div>,
       { autoClose: false, position: "top-center" }
     );
-};
+  };
 
-const actualizarServicios = () => {
-  
-  cargarClientes(); // ✅ Recarga los clientes para reflejar los cambios
-};
+  const actualizarServicios = () => {
+
+    cargarClientes(); // ✅ Recarga los clientes para reflejar los cambios
+  };
 
 
 
   return (
     <div className="clientes-container">
       <img src={logo} alt="Mundo Filtro" className="logo" />
-      <h1>Clientes</h1>
+      <h1 className="titulo">👥 Clientes</h1>
       <div className="filtro-container">
         <input type="text" placeholder="Nombre..." value={filtroNombre} onChange={(e) => setFiltroNombre(e.target.value)} />
         <input type="text" placeholder="Apellido..." value={filtroApellido} onChange={(e) => setFiltroApellido(e.target.value)} />
         <input type="text" placeholder="CUIT..." value={filtroCUIT} onChange={(e) => setFiltroCUIT(e.target.value)} />
-        <button onClick={() => setNuevoClienteModalAbierto(true)}>Nuevo Cliente</button>
+        <button onClick={() => setNuevoClienteModalAbierto(true)}><span role="img" aria-label="plus">➕</span> Nuevo Cliente</button>
+       
       </div>
 
       <div className="table-container">

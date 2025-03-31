@@ -4,6 +4,9 @@ import "./ServiciosPage.css";
 import logo from "../assets/background.jpg";
 import ListaServiciosModal from "../components/ListaServiciosModal";
 
+import { format } from 'date-fns';
+import { es } from 'date-fns/locale';
+
 const ServiciosPage = () => {
     const [servicios, setServicios] = useState([]);
     const [filtroFechaDesde, setFiltroFechaDesde] = useState("");
@@ -45,7 +48,7 @@ const ServiciosPage = () => {
 
             // Si no hay un servicio guardado o la fecha es más reciente, lo reemplazamos
             if (!serviciosPorVehiculo[vehiculoId] ||
-                new Date(servicio.fecha_servicio) > new Date(serviciosPorVehiculo[vehiculoId].fecha_servicio)) {
+                servicio.fecha_servicio > serviciosPorVehiculo[vehiculoId].fecha_servicio) {
                 serviciosPorVehiculo[vehiculoId] = servicio;
             }
         });
@@ -54,19 +57,19 @@ const ServiciosPage = () => {
     };
 
     const aplicarFiltros = () => {
-        const desde = filtroFechaDesde ? new Date(filtroFechaDesde) : null;
-        const hasta = filtroFechaHasta ? new Date(filtroFechaHasta) : null;
-
+        const desde = filtroFechaDesde || null;
+        const hasta = filtroFechaHasta || null;
+    
         if (!desde && !hasta) {
             cargarServicios();
             return;
         }
-
+    
         const filtrados = servicios.filter(servicio => {
-            const fechaServicio = new Date(servicio.fecha_servicio);
+            const fechaServicio = servicio.fecha_servicio; // SIN new Date() acá
             return (!desde || fechaServicio >= desde) && (!hasta || fechaServicio <= hasta);
         });
-
+    
         setServicios(filtrados);
     };
 
@@ -128,10 +131,24 @@ const ServiciosPage = () => {
         cargarServicios(); // ✅ Llama a la función que recarga los datos desde el backend
     };
 
+
+    const formatFechaCorta = (fechaString) => {
+           if (!fechaString) return "";
+       
+           const fecha = new Date(fechaString);
+           
+           // Ajustamos la diferencia horaria manualmente
+           fecha.setMinutes(fecha.getMinutes() + fecha.getTimezoneOffset());
+       
+           return format(fecha, "dd/MM/yyyy");
+       };
+
+
+
     return (
         <div className="servicios-container">
             <img src={logo} alt="Mundo Filtro" className="logo" />
-            <h1>Servicios</h1>
+            <h1 className="titulo">🔧 Servicios</h1>
 
             <div className="filtro-container">
                 <input
@@ -173,7 +190,7 @@ const ServiciosPage = () => {
                                         <td>{vehiculo.marca}</td>
                                         <td>{vehiculo.modelo}</td>
                                         <td>{cliente ? `${cliente.nombre} ${cliente.apellido}` : "Sin Cliente"}</td>
-                                        <td>{new Date(fecha_servicio).toLocaleDateString()}</td>
+                                        <td>{formatFechaCorta(servicio.fecha_servicio)}</td>
                                         <td>
                                             <button className="btn-ver-servicio" onClick={() => abrirListaServicios(vehiculo)}>🔍</button>
                                         </td>

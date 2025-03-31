@@ -130,7 +130,7 @@ const VerVehiculosModal = ({ cerrarModal, clienteSeleccionado , actualizarServic
                 {vehiculos.length === 0 ? (
                     <p>No hay vehículos registrados para este cliente.</p>
                 ) : (
-                    <div>
+                    <div className="contenedor-vehiculo">
                         {vehiculos.map((vehiculo) => (
                             <div key={vehiculo.id} className="vehiculo-item">
                                 <div className="vehiculo-info">

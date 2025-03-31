@@ -152,10 +152,10 @@ const UsuariosPage = () => {
 
   return (
     <div className="usuarios-page">
-      <img src={logo} alt="Mundo Filtro" className="usuarios-logo" />
+      <img src={logo} alt="Mundo Filtro" className="logo" />
 
       <div className="usuarios-header">
-        <h2>👥 Gestión de Usuarios</h2>
+        <h2 className="titulo">👥 Gestión de Usuarios</h2>
         <button className="usuarios-btn crear" onClick={() => abrirModal(null)}>
           ➕ Alta de usuario
         </button>
