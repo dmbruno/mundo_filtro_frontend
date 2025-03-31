@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import api from "../../api";
 import "./VerServicio.css";
 import { toast } from "react-toastify";
@@ -28,7 +28,7 @@ const VerServicio = ({ servicio, cliente, vehiculo, cerrarModal, actualizarServi
         };
       }, []);
 
-      
+
 
     if (!servicio) return null;
 
