@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "http://127.0.0.1:5000"; // URL del backend Flask
+const API_URL = "https://mundo-filtro.onrender.com"; // URL del backend Flask
 
 const api = axios.create({
   baseURL: API_URL,
