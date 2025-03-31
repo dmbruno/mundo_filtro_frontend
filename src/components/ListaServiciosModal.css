@@ -1,0 +1,205 @@
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 900;
+    
+}
+
+.modal-content {
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    width: 650px;
+    text-align: center;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    z-index: 950;
+}
+
+.modal-notch-servicios{
+    width: 60px;
+    height: 5px;
+    background: #ccc;
+    margin: 0 auto 10px auto;
+    border-radius: 10px;
+}
+
+.modal-title {
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+.modal-subtitle {
+    font-style: italic;
+    margin-bottom: 15px;
+    color: black ;
+}
+
+.modal-actions{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.lista-servicios {
+    max-height: 250px; /* Limita la altura para mostrar 3 elementos */
+    overflow-y: auto; /* Permite desplazamiento si hay más de 3 servicios */
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px;
+}
+
+.servicio-text{
+    color: black ;
+}
+.servicio-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #dedddd;
+    box-shadow: 0px 2px 4px rgba(1, 1, 1, 0.500);
+    padding: 15px 20px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+.servicio-info {
+    display: flex;
+    align-items: center;
+}
+
+.servicio-icon {
+    font-size: 24px;
+    margin-right: 10px;
+}
+
+.servicio-actions {
+    display: flex;
+    gap: 5px;
+}
+
+.btn-nuevo {
+    margin: 5px;
+    background-color: rgb(42, 163, 42);
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    color: white;
+    width: auto;
+    transition: background 0.3s ease, transform 0.2s ease;
+    box-shadow: 0px 2px 4px rgba(2, 2, 2, 0.779);
+}
+
+.btn-cerrar-vehiculos {
+    background-color: #e74d3ceb;
+    margin: 5px;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    color: white;
+    width: auto;
+    transition: background 0.3s ease, transform 0.2s ease;
+    box-shadow: 0px 2px 4px rgba(2, 2, 2, 0.779);
+}
+
+
+.btn-cerrar-vehiculos:active {
+    transform: scale(0.97);
+    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.btn-nuevo:active {
+    transform: scale(0.97);
+    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+
+.btn-ver-vehiculo{
+    margin: 5px;
+    border: none;
+    background-color: rgba(81, 179, 235, 0.834);
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    color: white;
+    width: auto;
+    transition: background 0.3s ease, transform 0.2s ease;
+    box-shadow: 0px 2px 4px rgba(2, 2, 2, 0.779); 
+}
+
+.btn-eliminar-vehiculos{
+    margin: 5px;
+    border: none;
+    background-color: #e74d3ceb;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    color: white;
+    width: auto;
+    transition: background 0.3s ease, transform 0.2s ease;
+    box-shadow: 0px 2px 4px rgba(2, 2, 2, 0.779); 
+}
+
+.btn-ver-vehiculo:active {
+    transform: scale(0.97);
+    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.btn-eliminar-vehiculos:active {
+    transform: scale(0.97);
+    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.btn-ver-vehiculo:hover {
+    
+    transform: scale(1.02);
+}
+
+.btn-eliminar-vehiculos:hover {
+    
+    transform: scale(1.02);
+}
+
+
+.btn-nuevo:hover {
+    
+    transform: scale(1.02);
+}
+
+.btn-cerrar-vehiculos:hover {
+    
+    transform: scale(1.02);
+}
+
+
+.servicio-item {
+    display: flex;
+    align-items: center;
+    background: #f0f0f0;
+    padding: 10px;
+    border-radius: 8px;
+    margin-bottom: 8px;
+    color: black; /* ✅ Texto negro */
+    height: 50px; /* ✅ Reducir altura */
+}
+
+.servicio-icono {
+    font-size: 24px; /* ✅ Tamaño adecuado del icono */
+    margin-right: 10px;
+}
+
+
+
+
+
+.servicio-details-text{
+    color: black;
+}

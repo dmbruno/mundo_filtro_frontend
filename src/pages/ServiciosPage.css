@@ -1,0 +1,108 @@
+.servicios-container {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding-top: 20px;
+    margin-left: 60px;
+}
+
+.logo {
+    width: 400px;
+    margin-bottom: 10px;
+}
+
+.filtro-container {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.filtro-container input {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.btn-filtrar {
+    padding: 8px 12px;
+    background-color: #8fc97f;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    color: white;
+}
+
+.table-container {
+    max-height: 400px;
+    width: 1000px;
+    overflow-y: auto;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th {
+    background-color: #222;
+    color: white;
+    padding: 10px;
+}
+
+td {
+    padding: 10px;
+    text-align: center;
+}
+
+.btn-ver {
+    background-color: #3498db;
+    padding: 5px;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-editar {
+    background-color: #f0ad4e;
+    padding: 5px;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-eliminar {
+    background-color: #d9534f;
+    padding: 5px;
+    border: none;
+    cursor: pointer;
+}
+
+.filtro-container {
+    display: flex;
+    justify-content: center;
+    /* Centrar horizontalmente */
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+
+.btn-ver-servicio {
+    background-color: #3498db;
+    border: none;
+    padding: 8px;
+    border-radius: 5px;
+    cursor: pointer;
+    color: white;
+    transition: background 0.3s ease;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+.btn-ver-servicio:hover {
+    background-color: #2980b9;
+}

@@ -1,0 +1,162 @@
+/* Contenedor principal de la página de clientes */
+.clientes-container {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding-top: 20px;
+    margin-left: 60px;
+
+}
+
+/* Logo de Mundo Filtro */
+.logo {
+    width: 400px;
+    margin-bottom: 20px;
+}
+
+/* Barra de filtros */
+.filtro-container {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 20px;
+    width: 80%;
+}
+
+.filtro-container input {
+    width: 200px;
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+    outline: none;
+    font-size: 14px;
+    background-color: rgba(255, 255, 255, 0.8);
+}
+
+/* Botón aplicar filtros */
+.filtro-container button {
+    margin: 5px;
+    background-color: rgba(98, 205, 98, 0.662);
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    color: white;
+    transition: background 0.3s ease, transform 0.2s ease;
+    box-shadow: 0px 2px 4px rgba(252, 252, 252, 0.779);
+}
+
+.filtro-container button:hover {
+    transform: scale(1.03);
+}
+
+.filtro-container button:active {
+    transform: scale(0.97);
+    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+
+
+/* Contenedor de la tabla para limitar la altura y permitir scroll */
+.table-container {
+    width: 100%;
+    /* Aumenta el ancho de la tabla */
+    max-width: 1200px;
+    overflow-y: auto;
+    max-height: 400px;
+    /* Limita la altura para que solo se vean 10 filas */
+    border-radius: 10px;
+    
+}
+
+.encabezado th{
+    text-align: center;
+}
+
+/* Tabla de clientes */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 10px;
+}
+
+/* Encabezados de la tabla */
+thead {
+    position: sticky;
+    top: 0;
+    background-color: #333;
+    
+    /* Fondo fijo para que se mantenga visible */
+    z-index: 2;
+}
+
+th,
+td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+    color: black;
+}
+
+th {
+    background-color: #333;
+    color: white;
+}
+
+/* Hover en filas de la tabla */
+tbody tr:hover {
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+/* Botones de acción */
+.btn-ver {
+    margin: 5px;
+    background-color: #3498db;
+    border: none;
+    padding: 8px;
+    border-radius: 5px;
+    cursor: pointer;
+    color: white;
+    transition: background 0.3s ease;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+.btn-ver:hover {
+    background-color: #2980b9;
+}
+
+.btn-editar {
+    margin: 5px;
+    background-color: #f1c40f;
+    border: none;
+    padding: 8px;
+    border-radius: 5px;
+    cursor: pointer;
+    color: black;
+    transition: background 0.3s ease;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+.btn-editar:hover {
+    background-color: #d4ac0d;
+}
+
+.btn-eliminar {
+    margin: 5px;
+    background-color: #e74c3c;
+    border: none;
+    padding: 8px;
+    border-radius: 5px;
+    cursor: pointer;
+    color: white;
+    transition: background 0.3s ease;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+.btn-eliminar:hover {
+    background-color: #c0392b;
+}

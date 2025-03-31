@@ -1,0 +1,255 @@
+/* Logo centrado igual que Clientes */
+.usuarios-logo {
+    width: 400px;
+    display: block;
+    margin: 20px auto;
+  }
+  
+  /* Contenedor principal */
+  .usuarios-page {
+    text-align: center;
+    padding: 20px 60px;
+    color: white;
+    margin-top: 30px;
+  }
+  
+  /* Encabezado con botón */
+  .usuarios-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 900px;
+    margin: 100px auto 20px;
+
+  }
+  
+  .usuarios-header h2 {
+    margin: 0;
+  }
+  
+  .usuarios-btn.crear {
+    background-color: rgba(98, 205, 98, 0.662);
+    color: white;
+    font-weight: bold;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    box-shadow: 0px 2px 4px rgba(255, 255, 255, 0.327);
+  }
+  
+  .usuarios-btn.crear:hover {
+    background-color: #3da043;
+  }
+  
+  .usuarios-btn.crear:active {
+    transform: scale(0.97);
+    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3);
+  }
+
+
+  /* Tabla de usuarios */
+  .usuarios-table {
+    margin: 0 auto;
+    border-collapse: collapse;
+    border-radius: 10px;
+    overflow: hidden;
+    background-color: #d3d3d3; /* fondo claro como Clientes */
+    min-width: 800px;
+  }
+  
+  .usuarios-table th {
+    background-color: #1c1c1c;
+    color: white;
+    padding: 12px;
+    text-align: center;
+  }
+  
+  .usuarios-table td {
+    padding: 12px;
+  }
+  
+  .usuarios-table tr:nth-child(even) {
+    background-color: #dcdcdc;
+  }
+  
+  .usuarios-table tr:nth-child(odd) {
+    background-color: #eaeaea;
+  }
+  
+  /* Botones de acción */
+  .usuarios-btn {
+    margin: 5px;
+    background-color: #f1c40f;
+    border: none;
+    padding: 8px;
+    border-radius: 5px;
+    cursor: pointer;
+    color: black;
+    transition: background 0.3s ease;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.4);
+  }
+  
+  .usuarios-btn.editar:hover {
+    background-color: #d4ac0d;
+    
+}
+ 
+
+  .usuarios-btn.editar:active {
+    transform: scale(0.97); /* 🕳️ efecto "hundido" */
+    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3);
+  }
+  
+  .usuarios-btn.eliminar {
+    margin: 5px;
+    background-color: #e74c3c;
+    border: none;
+    padding: 8px;
+    border-radius: 5px;
+    cursor: pointer;
+    color: white;
+    transition: background 0.3s ease, transform 0.2s ease;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.4);
+  }
+
+  .usuarios-btn.eliminar:hover {
+    background-color: #c0392b;
+    
+}
+
+  .usuarios-btn.eliminar:active {
+    transform: scale(0.97); /* 🕳️ efecto "hundido" */
+    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3);
+  }
+  
+  /* Modal */
+  .usuarios-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+  }
+  
+  .usuarios-modal-content {
+    background: #f9f9f9;
+    color: #333;
+    padding: 50px;
+    border-radius: 12px;
+    width: 480px;
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    position: relative;
+
+    padding-left: 25px;
+  }
+  
+  /* Notch arriba */
+  .usuarios-notch {
+    width: 80px;
+    height: 6px;
+    background: #ccc;
+    border-radius: 10px;
+    margin: 0 auto 20px auto;
+    
+  }
+  
+  /* Título */
+  .usuarios-modal-content h3 {
+    margin-bottom: 20px;
+    font-size: 20px;
+    font-weight: bold;
+  }
+  
+  /* Inputs con labels */
+  .usuarios-modal-content label {
+    display: block;
+    text-align: left;
+    font-weight: bold;
+    margin-top: 15px;
+    margin-bottom: 5px;
+    font-size: 14px;
+    
+  }
+  
+  .usuarios-modal-content input[type="text"],
+  .usuarios-modal-content input[type="email"],
+  .usuarios-modal-content input[type="password"] {
+    width: 100%;
+    padding: 10px 12px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    background-color: #f0f0f0;
+    font-size: 14px;
+  }
+  
+  /* Checkbox con alineado */
+  .usuarios-checkbox {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 10px;
+    margin-top: 15px;
+    font-size: 14px;
+  }
+  
+  /* Botones */
+  .usuarios-modal-buttons {
+    margin-top: 30px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    justify-content: center;
+    margin-left: 20px;
+  }
+  
+  .btn-salir-usuarios {
+    margin: 5px;
+    background-color: #e74c3c;
+    border: none;
+    padding: 8px;
+    border-radius: 5px;
+    cursor: pointer;
+    color: white;
+    transition: background 0.3s ease, transform 0.2s ease;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);
+  }
+
+  
+  .btn-guardar-usuarios {
+    margin: 5px;
+    background-color: green;
+    border: none;
+    padding: 8px;
+    border-radius: 5px;
+    cursor: pointer;
+    color: white;
+    transition: background 0.3s ease, transform 0.2s ease;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);
+  }
+  
+  .btn-guardar-usuarios:hover {
+    background-color: #43a047;
+    transform: scale(1.05);
+    
+  }
+  
+  .btn-salir-usuarios:hover {
+    background-color: #a22323;
+    transform: scale(1.05);
+  }
+
+  .btn-guardar-usuarios:active {
+    transform: scale(0.97); /* 🕳️ efecto "hundido" */
+    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3);
+  }
+
+  .btn-salir-usuarios:active {
+    transform: scale(0.97);
+    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3);
+  }

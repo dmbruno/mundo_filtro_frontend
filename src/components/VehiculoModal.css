@@ -1,0 +1,262 @@
+/* 🔹 Oscurecer el fondo cuando el modal está abierto */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+}
+
+/* 🔹 Contenedor principal del modal */
+.modal-vehiculo {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    width: 650px;
+    border-radius: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    padding: 20px;
+    z-index: 1000;
+}
+
+/* 🔹 Cabecera del modal */
+.modal-vehiculo-header {
+    text-align: center;
+    font-weight: bold;
+    font-style: italic;
+}
+
+/* 🔹 Notch decorativo en la parte superior */
+.modal-vehiculo-notch {
+    width: 60px;
+    height: 5px;
+    background: #ccc;
+    margin: 0 auto 10px auto;
+    border-radius: 10px;
+}
+
+/* 🔹 Título del modal */
+.modal-vehiculo-title {
+    font-size: 18px;
+    margin-bottom: 15px;
+    color: black;
+}
+
+.modal-vehiculo-title span {
+    font-size: 16px;
+    font-weight: normal;
+}
+
+/* 🔹 Contenedor del cuerpo del modal */
+.modal-vehiculo-body {
+    display: flex;
+    flex-direction: column;
+    padding-right: 10px;
+    margin-bottom: 20px;
+}
+
+/* 🔹 Contenedor de los inputs */
+.input-group-vehiculo {
+    margin-bottom: 10px;
+    text-align: left;
+    
+}
+
+/* 🔹 Estilos para etiquetas de los inputs */
+.modal-vehiculo-label {
+    font-size: 16px;
+    font-weight: bold;
+    color: black;
+    
+}
+
+/* 🔹 Estilos de los inputs */
+.modal-vehiculo-body input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background: #f5f5f5;
+    font-size: 16px;
+}
+
+/* 🔹 Cuando los inputs están en modo solo lectura */
+.modal-vehiculo-body input:read-only {
+    background: #e0e0e0;
+    color: #777;
+}
+
+/* 🔹 Contenedor de botones en grid */
+.modal-vehiculo-footer {
+    margin-top: 25px;
+    margin-left: 7px;
+    display: grid;
+    gap: 10px;
+    width: 100%;
+}
+
+.modal-vehiculo-footer.modo-normal {
+    grid-template-columns: repeat(2, 1fr);
+}
+
+
+.modal-vehiculo-footer.modo-edicion {
+    grid-template-columns: repeat(2, 1fr);
+}
+
+
+.modal-vehiculo-footer.modo-edicion .fila-secundaria {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    grid-column: 1 / -1;
+    width: 100%;
+}
+
+/* 🔹 Segunda fila en modo edición */
+.fila-secundaria {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 columnas cuando está en edición */
+    gap: 10px;
+    width: 100%;
+}
+
+/* 🔹 Cada botón en la segunda fila ocupa el 33% */
+.fila-secundaria button {
+    width: 100%;
+}
+
+/* 🔹 Estilos generales de los botones */
+.modal-vehiculo-footer button {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+    transition: all 0.2s ease-in-out;
+}
+
+/* 🔹 Colores de los botones */
+.botonServicios {
+    margin: 5px;
+    background-color: rgb(42, 163, 42);
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    color: white;
+    transition: background 0.3s ease, transform 0.2s ease;
+    box-shadow: 0px 2px 4px rgba(2, 2, 2, 0.779);
+}
+
+.botonServicios:active{
+    transform: scale(0.97);
+    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.btn-close-vehiculo {
+    margin: 5px;
+    background-color: #e74d3ceb;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    color: white;
+    transition: background 0.3s ease, transform 0.2s ease;
+    box-shadow: 0px 2px 4px rgba(2, 2, 2, 0.779);
+}
+.btn-close-vehiculo:active{
+    transform: scale(0.97);
+    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+
+.btn-cancelar-vehiculo {
+    margin: 5px;
+    background-color: #e74d3ceb;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    color: white;
+    transition: background 0.3s ease, transform 0.2s ease;
+    box-shadow: 0px 2px 4px rgba(2, 2, 2, 0.779);
+}
+
+.btn-cancelar-vehiculo:active{
+    transform: scale(0.97);
+    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+
+
+.btn-editar-vehiculo {
+    background-color: #f0ad4e;
+    margin: 5px;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    color: white;
+    transition: background 0.3s ease, transform 0.2s ease;
+    box-shadow: 0px 2px 4px rgba(2, 2, 2, 0.779);
+}
+.btn-editar-vehiculo:active{
+    transform: scale(0.97);
+    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+
+
+.btn-guardar-vehiculo {
+    background-color: #5bc0de;
+    margin: 5px;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    color: white;
+    transition: background 0.3s ease, transform 0.2s ease;
+    box-shadow: 0px 2px 4px rgba(2, 2, 2, 0.779);
+}
+
+.btn-guardar-vehiculo:active{
+    transform: scale(0.97);
+    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+
+
+/* 🔹 Efectos hover */
+.botonServicios:hover {
+    background-color: #388E3C;
+    transform: scale(1.02);
+}
+
+.btn-close-vehiculo:hover {
+    background-color: #d32f2f;
+    transform: scale(1.02);
+}
+
+.btn-editar-vehiculo:hover {
+    background-color: #d48c0d;
+    transform: scale(1.02);
+}
+
+.btn-cancelar-vehiculo:hover {
+    background-color: #d32f2f;
+    transform: scale(1.02);
+}
+
+.btn-guardar-vehiculo:hover {
+    background-color: #31b0d5;
+    transform: scale(1.02);
+}
+
