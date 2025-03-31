@@ -31,6 +31,17 @@ const VerServicio = ({ servicio, cliente, vehiculo, cerrarModal, actualizarServi
         });
     };
 
+
+
+    useEffect(() => {
+        document.body.style.overflow = "hidden"; // Bloquea el scroll del fondo
+      
+        return () => {
+          document.body.style.overflow = "auto"; // Lo restaura al cerrar el modal
+        };
+      }, []);
+
+      
     // Manejar cambios en los checkboxes
     const handleCheckboxChange = (e) => {
         const { name, checked } = e.target;
