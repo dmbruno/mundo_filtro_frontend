@@ -1,0 +1,179 @@
+/* Estilo para el modal de Nuevo Cliente */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+/* Contenedor del modal */
+.modal-content {
+    background: #fff;
+    border-radius: 8px;
+    padding: 20px;
+    width: 400px;
+    max-width: 100%;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Título del modal */
+.modal-content h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    text-align: center;
+    font-weight: bold;
+    color: #333;
+}
+
+/* Estilo de los campos de entrada */
+.modal-content input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    box-sizing: border-box;
+}
+
+/* Estilo para los botones */
+.modal-content .button {
+    padding: 10px 20px;
+    margin: 5px;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.modal-content .button-verde {
+    background-color: #28a745;
+    color: white;
+    border: none;
+}
+
+.modal-content .button-rojo {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+}
+
+.modal-content .button-verde:hover,
+.modal-content .button-rojo:hover {
+    opacity: 0.8;
+}
+
+/* Estilo para el contenedor de botones */
+.modal-content .botones-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+/* Botones para cerrar y guardar */
+.modal-content .botones-container button {
+    padding: 12px 25px;
+    font-size: 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.modal-content .botones-container .btn-cerrar {
+    background-color: #f44336;
+    color: white;
+    border: none;
+}
+
+.modal-content .botones-container .btn-guardar {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+}
+
+.modal-content .botones-container .btn-cerrar:hover,
+.modal-content .botones-container .btn-guardar:hover {
+    opacity: 0.8;
+}
+
+.botones{
+    margin-top: 30px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    justify-content: center;
+    
+  }
+
+.btnNew {
+    margin: 5px;
+    background-color: rgb(42, 163, 42);
+    border: none;
+    padding: 8px;
+    border-radius: 5px;
+    cursor: pointer;
+    color: white;
+    transition: background 0.3s ease, transform 0.2s ease;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);
+    
+  }
+
+
+  .btnNew:hover {
+    background-color: #43a047;
+    transform: scale(1.05);
+    
+  }
+
+  .btnNew:active {
+    transform: scale(0.97);
+    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3);
+  }
+
+  .btnCerrar {
+    margin: 5px;
+    background-color: #e74d3ceb;
+    border: none;
+    padding: 8px;
+    border-radius: 5px;
+    cursor: pointer;
+    color: white;
+    transition: background 0.3s ease, transform 0.2s ease;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);
+    
+  }
+
+  .btnCerrar:hover {
+    background-color: #e74d3c;
+    transform: scale(1.05);
+  }
+
+  .btnCerrar:active {
+    transform: scale(0.97);
+    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3);
+  }
+
+
+
+
+
+  .modal-content::before {
+    content: "";
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 10px;
+    width: 60px;
+    height: 5px;
+    background: #ccc;
+    margin: 0 auto 10px auto;
+    border-radius: 10px;
+  }
+
+  
+ 

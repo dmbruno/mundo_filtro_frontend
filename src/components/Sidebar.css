@@ -1,0 +1,97 @@
+.sidebar {
+    width: 80px; /* Ancho fijo */
+    height: 80vh; /* 80% del alto de la pantalla */
+    position: fixed;
+    left: 20px; /* Espacio desde el borde izquierdo */
+    top: 50%;
+    transform: translateY(-50%); /* Centrar verticalmente */
+    background-color: rgba(255, 255, 255, 0.3); /* Blanco semitransparente */
+    backdrop-filter: blur(10px); /* Efecto de desenfoque */
+    border-radius: 20px; /* Bordes redondeados */
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; /* Centrar los elementos */
+    transition: width 0.3s;
+    padding: 0 40px;
+  }
+  
+  .sidebar:hover {
+    width: 120px; /* Se expande al pasar el mouse */
+  }
+  
+  .sidebar ul {
+    list-style: none;
+    padding: 0;
+    width: 100%;
+  }
+  
+  .sidebar ul li {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 15px;
+    text-align: center;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  
+  .sidebar ul li a {
+    color: black;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    gap: 10px;
+  }
+  
+  .sidebar ul li:hover {
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 10px;
+  }
+
+  .logout-container {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+  }
+  
+  .logout-item {
+    cursor: pointer;
+    color: black;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+    font-size: 14px;
+  }
+  
+  .logout-wrapper {
+    width: 100%;
+    position: absolute;
+    bottom: 20px;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    
+  }
+  
+  .logout-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 10px;
+    color: white;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    border-radius: 10px;
+    width: 80%;
+  }
+  
+  .logout-item:hover {
+    color: black;
+    background-color: rgba(255, 255, 255, 0.5);
+  }

@@ -1,0 +1,176 @@
+.modal-content {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  width: 650px;
+  border-radius: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  padding: 20px;
+  z-index: 1000;
+  padding-right: 10px;
+  padding-left: 5px;
+}
+
+.modal-overlay {
+  position: fixed;  /* Se mantiene fijo en toda la pantalla */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6); /* 🔥 Oscurece el fondo (0.6 = 60% opacidad) */
+  backdrop-filter: blur(5px); /* ✨ Efecto difuminado */
+  z-index: 999; /* Asegura que quede detrás del modal */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+
+.modal-header {
+  text-align: center;
+  font-weight: bold;
+  font-style: italic;
+  color: black;
+}
+
+
+.modal-notch {
+  width: 60px;
+  height: 5px;
+  background: #ccc;
+  margin: 0 auto 10px auto;
+  border-radius: 10px;
+}
+
+.modal-title {
+  font-size: 18px;
+  margin-bottom: 15px;
+  color: black;
+  
+}
+
+.modal-body {
+  display: flex;
+  flex-direction: column;
+
+  padding-right: 10px;
+}
+
+.input-group {
+
+  margin-bottom: 10px;
+
+}
+
+.modal-label {
+  display: flex;
+  justify-content: start;
+  font-size: 14px;
+  font-weight: bold;
+  color: black;
+
+}
+
+
+input[readonly] {
+  color: #888;
+  
+  background-color: #ddd9d9;
+  border: 1px solid #ddd;
+  cursor: not-allowed;
+}
+
+input.editable {
+  color: black;
+  /* Negro cuando está habilitado */
+  background-color: white;
+  border: 1px solid #aaa;
+  cursor: text;
+  transition: all 0.2s ease-in-out;
+}
+
+
+
+
+
+.buttons-group {
+
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+
+}
+
+.modal-footer {
+  display: grid;
+  gap: 10px;
+  margin-top: 15px;
+  width: 100%;
+}
+
+.modal-footer.two-buttons {
+  grid-template-columns: repeat(2, 1fr);
+  /* Dos columnas del mismo tamaño */
+}
+
+.modal-footer.three-buttons {
+  grid-template-columns: repeat(3, 1fr);
+  /* Tres columnas del mismo tamaño */
+}
+
+
+.btn {
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: bold;
+  text-align: center;
+  width: 100%;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+  /* Sombra suave */
+  transition: all 0.2s ease-in-out;
+
+}
+
+.btn:hover {
+  box-shadow: 3px 3px 7px rgba(0, 0, 0, 0.3);
+  transform: scale(1.02);
+  /* Efecto sutil de agrandamiento */
+}
+
+.btn:active {
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+  transform: scale(0.98);
+  /* Simula un clic con leve reducción */
+}
+
+.btn-view {
+  background-color: rgb(42, 163, 42);
+  color: white;
+
+}
+
+.btn.new {
+  background-color: rgb(42, 163, 42);
+  color: white;
+}
+
+.btn.close {
+  background-color: #e74d3ceb;
+  color: white;
+}
+
+.btn.edit {
+  background-color: #f0ad4e;
+  color: white;
+
+}
+
+.buttons-container{
+  margin-top: 10px;
+}
