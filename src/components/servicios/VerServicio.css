@@ -11,7 +11,9 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    
+    overflow-y: auto;
+    padding: 20px;
+
 
 }
 
@@ -69,7 +71,7 @@
 
 .ver-servicio-row textarea {
     height: 30px;
-  }
+}
 
 .ver-servicio-row input {
     padding: 15px;
@@ -325,19 +327,19 @@
 .ver-servicio-btn-editar {
     background-color: #ffa726;
     color: white;
-  }
+}
 
-  .ver-servicio-btn-guardar {
+.ver-servicio-btn-guardar {
     background-color: #66bb6a;
     color: white;
-  }
+}
 
-  .ver-servicio-btn-cerrar:hover,
+.ver-servicio-btn-cerrar:hover,
 .ver-servicio-btn-editar:hover,
 .ver-servicio-btn-guardar:hover,
 .ver-servicio-btn-cancelar:hover {
-  box-shadow: 3px 3px 7px rgba(0, 0, 0, 0.3);
-  transform: scale(1.04);
+    box-shadow: 3px 3px 7px rgba(0, 0, 0, 0.3);
+    transform: scale(1.04);
 }
 
 
