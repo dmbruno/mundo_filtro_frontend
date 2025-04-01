@@ -44,7 +44,7 @@ const LoginPage = () => {
     <div className="login-page">
       <img src={logo} alt="Mundo Filtro Logo" className="logo" />
       <div className="login-form">
-        <h2>🔐 Iniciar Sesión</h2>
+        <h2 className="titulo">🔐 Iniciar Sesión</h2>
         <input
           type="text"
           placeholder="Email..."
