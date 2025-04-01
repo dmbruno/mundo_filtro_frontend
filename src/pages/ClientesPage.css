@@ -48,7 +48,7 @@
 /* Botón aplicar filtros */
 .filtro-container button {
     margin: 5px;
-    background-color: #4CAF50;
+    background-color: rgba(98, 205, 98, 0.662);
     border: none;
     padding: 8px 16px;
     border-radius: 4px;
