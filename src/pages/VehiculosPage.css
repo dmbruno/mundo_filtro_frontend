@@ -7,23 +7,46 @@
     align-items: center;
     justify-content: flex-start;
     padding-top: 20px;
-    margin-left: 60px;
+    
 
 }
 
 .vehiculos-table {
     max-height: 400px;
-    width: 1000px;
+    width: 950px;
     overflow-y: auto;
     border-collapse: separate; /* ✅ Permite los bordes redondeados */
     border-spacing: 0; /* ✅ Evita separación entre celdas */
     border-radius: 10px; /* ✅ Redondea las esquinas */
     overflow: hidden; /* ✅ Evita que los bordes desaparezcan */
     border: 1px solid #ccc; /* ✅ Mantiene el borde */
+
+    
+    /* Aumenta el ancho de la tabla */
+    max-width: 1200px;
+    
+    max-height: 400px;
+    
+    /* Limita la altura para que solo se vean 10 filas */
+    border-radius: 10px;
+}
+
+.titulo{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif ;  
+    text-align: center;
+    margin-top: 50px;
+    margin-bottom: 20px;
+    font-size: 26px;
+    font-weight: bolder;
+}
+
+.logo {
+    width: 400px;
+    margin-bottom: 20px;
 }
 
 /* Logo */
-.vehiculos-container .logo {
+.vehiculos-container {
     width: 400px;
     margin-bottom: 20px;
 }

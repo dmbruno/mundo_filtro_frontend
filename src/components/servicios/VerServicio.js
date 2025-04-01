@@ -96,7 +96,7 @@ const VerServicio = ({ servicio, cliente, vehiculo, cerrarModal, actualizarServi
                         <em>Cliente: {cliente?.nombre} {cliente?.apellido}</em>
                     </h4>
 
-                    <h4 className="ver-servicio-subtitle">
+                    <h4 className="ver-servicio-subtitle-otro">
                         <em>Vehículo: {vehiculo?.marca} {vehiculo?.modelo}</em>
                     </h4>
 

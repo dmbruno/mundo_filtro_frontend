@@ -240,7 +240,7 @@ const eliminarVehiculo = (vehiculoId) => {
     return (
         <div className="vehiculos-container">
             <img src={logo} alt="Mundo Filtro" className="logo" />
-            <h1>Vehículos</h1>
+            <h1 className="titulo">🚗 Vehículos</h1>
 
             <div className="filtro-container">
                 <input

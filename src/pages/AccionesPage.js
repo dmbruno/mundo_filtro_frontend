@@ -87,7 +87,7 @@ const AccionesPage = () => {
     return (
         <div className="acciones-page">
             <img src={logo} alt="Mundo Filtro" className="logo" />
-            <h2 className="acciones-title">📲 Recordatorios por WhatsApp </h2>
+            <h2 className="titulo">📲 Recordatorios por WhatsApp </h2>
 
             <div className="acciones-contenido">
                 <div className="filtros-clientes">

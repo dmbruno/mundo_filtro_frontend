@@ -12,7 +12,7 @@ const ClienteModal = ({ cliente, cerrarModal, actualizarCliente, modoEdicion, se
     email: cliente.email,
   });
 
-  
+
 
   if (!cliente) return null;
 
@@ -24,7 +24,7 @@ const ClienteModal = ({ cliente, cerrarModal, actualizarCliente, modoEdicion, se
     api
       .put(`/clientes/${cliente.id}`, formData)
       .then((response) => {
-        
+
         actualizarCliente({ ...cliente, ...formData });
         setModoEdicion(false);
         toast.success("✅ Cliente actualizado correctamente", { autoClose: 3000 });
@@ -33,6 +33,24 @@ const ClienteModal = ({ cliente, cerrarModal, actualizarCliente, modoEdicion, se
         console.error("Error al actualizar el cliente:", error);
         toast.error("❌ Error al actualizar el cliente", { autoClose: 3000 }); // 🔥 Muestra un toast de error si falla
       });
+  };
+
+
+
+  const handleVerVehiculos = async () => {
+    try {
+      const response = await api.get(`/vehiculos/?cliente_id=${cliente.id}`);
+      const vehiculos = response.data;
+  
+      if (vehiculos.length > 0) {
+        verVehiculos({ ...cliente, vehiculos }, actualizarServicios); // le pasás los datos completos
+      } else {
+        toast.error("❌ No hay vehículos registrados para este cliente", { autoClose: 3000 });
+      }
+    } catch (error) {
+      toast.error("❌ Error al verificar los vehículos", { autoClose: 3000 });
+      console.error(error);
+    }
   };
 
   return (
@@ -73,7 +91,7 @@ const ClienteModal = ({ cliente, cerrarModal, actualizarCliente, modoEdicion, se
 
           <div className="buttons-container">
             <div className="buttons-group">
-              <button className="btn btn-view" onClick={() => verVehiculos(cliente, actualizarServicios)}>Ver Vehículos</button>
+              <button className="btn btn-view" onClick={handleVerVehiculos}>Ver Vehículos</button>
               <button className="btn new" onClick={() => abrirNuevoVehiculoModal(cliente)}>Nuevo Vehículo</button>
             </div>
           </div>
@@ -92,7 +110,7 @@ const ClienteModal = ({ cliente, cerrarModal, actualizarCliente, modoEdicion, se
         </div>
       </div>
     </div>
-    
+
   );
 };
 
