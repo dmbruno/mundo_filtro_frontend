@@ -33,7 +33,7 @@
   }
   
   .usuarios-btn.crear {
-    background-color: #4CAF50;
+    background-color: rgba(98, 205, 98, 0.662);
     color: white;
     font-weight: bold;
     padding: 8px 16px;
