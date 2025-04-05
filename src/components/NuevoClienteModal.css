@@ -38,11 +38,21 @@
   padding: 10px;
   margin: 10px 0;
   border: 1px solid #ccc;
-  border-radius: 4px;
+  border-radius: 6px;
   font-size: 14px;
   box-sizing: border-box;
+  background-color: #e0e0e0; /* fondo gris claro */
+  box-shadow: inset 0px 2px 4px rgba(0, 0, 0, 0.1); /* sombrita interior */
+  transition: all 0.3s ease;
 }
 
+
+.modal-content input[type="text"]:focus,
+.modal-content input[type="email"]:focus {
+  border-color: #4CAF50;
+  background-color: #f5f5f5; /* fondo más claro al hacer focus */
+  outline: none;
+}
 
 
 /* Estilo para los botones */
