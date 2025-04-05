@@ -42,7 +42,7 @@ const NuevoClienteModal = ({ cerrarModal, actualizarClientes }) => {
         <input type="text" value={telefono} onChange={(e) => setTelefono(e.target.value)} placeholder="Teléfono" />
         <input
           type="email"
-          className="correo-electronico"
+          className="correo-elec"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           placeholder="Correo Electrónico"
