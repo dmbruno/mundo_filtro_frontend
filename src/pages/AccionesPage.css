@@ -189,6 +189,7 @@
     border: 1px solid #ccc;
     font-size: 15px;
     margin-left: -10px;
+    height: 100px;
 }
 
 .modal-buttons {

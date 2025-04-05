@@ -17,20 +17,20 @@ const LoginPage = () => {
         email,
         password,
       });
-  
+
       const token = response.data.access_token;
       localStorage.setItem("token", token);
-  
+
       // 🔎 Paso 2: Obtener info de usuario (incluye is_admin)
       const userInfo = await api.get("/auth/me", {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
-  
+
       // 💾 Guardamos usuario completo en localStorage
       localStorage.setItem("user", JSON.stringify(userInfo.data));
-  
+
       // ✅ Redirigir y recargar
       navigate("/clientes");
       window.location.reload();
@@ -46,12 +46,14 @@ const LoginPage = () => {
       <div className="login-form">
         <h2 className="titulo">🔐 Iniciar Sesión</h2>
         <input
+          
           type="text"
           placeholder="Email..."
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
         <input
+          
           type="password"
           placeholder="Contraseña..."
           value={password}

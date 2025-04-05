@@ -17,31 +17,32 @@ const AccionesPage = () => {
     const [vehiculoSeleccionado, setVehiculoSeleccionado] = useState(null);
 
     useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const response = await api.get("/acciones/vehiculos-con-ultimo-servicio");
-                setVehiculos(response.data);
-            } catch (error) {
-                console.error("❌ Error al obtener vehículos con último servicio:", error);
-            }
-        };
-
-        fetchData();
+        cargarVehiculos();
     }, []);
+
+    const cargarVehiculos = async () => {
+        try {
+            const response = await api.get("/acciones/vehiculos-con-ultimo-servicio");
+            setVehiculos(response.data);
+        } catch (error) {
+            console.error("❌ Error al obtener vehículos:", error);
+        }
+    };
 
     const calcularMeses = (fecha) => {
         if (!fecha) return null;
         return dayjs().diff(dayjs(fecha), 'month');
     };
 
+    // 📦 Ahora también filtramos los que NO estén gestionados
     const vehiculosFiltrados = vehiculos
         .filter((v) =>
             (`${v.nombre} ${v.apellido}`.toLowerCase().includes(filtroNombre.toLowerCase()))
         )
+        .filter((v) => !v.gestionado) // 👈 Solo no gestionados
         .filter((v) => {
-            if (!soloPendientes) return true;
             const meses = calcularMeses(v.ultimo_servicio);
-            return meses === null || meses >= 6;
+            return meses !== null && meses >= 5; // 👈 Mostrar sólo los que tienen 5 meses o más
         });
 
     const abrirModal = (vehiculo) => {
@@ -50,7 +51,7 @@ const AccionesPage = () => {
         setMensajePersonalizado(
             `Hola ${vehiculo.nombre}, te recordamos que hace ${meses ?? "varios"} meses no realizás un servicio al vehículo ${vehiculo.marca} ${vehiculo.modelo} (${vehiculo.dominio}). Te esperamos en Mundo Filtro 🚗🔧`
         );
-        setModalAbierto(true); 
+        setModalAbierto(true);
     };
 
     const cerrarModal = () => {
@@ -59,15 +60,33 @@ const AccionesPage = () => {
         setMensajePersonalizado("");
     };
 
-    const enviarWhatsApp = () => {
+    const enviarWhatsApp = async () => {
         if (!vehiculoSeleccionado || !vehiculoSeleccionado.telefono) return;
-      
+
         const tel = vehiculoSeleccionado.telefono.replace(/\D/g, "");
         const mensajeCodificado = encodeURIComponent(mensajePersonalizado);
-      
+
         window.open(`https://wa.me/54${tel}?text=${mensajeCodificado}`, "_blank");
+
+        // 🔥 Marcamos el vehículo como gestionado en el backend
+        try {
+            await api.put(`/acciones/marcar-gestionado/${vehiculoSeleccionado.vehiculo_id}`);
+            console.log("✅ Vehículo marcado como gestionado");
+
+            // ✅ Actualizamos la tabla local
+            setVehiculos((prevVehiculos) =>
+                prevVehiculos.map((v) =>
+                    v.vehiculo_id === vehiculoSeleccionado.vehiculo_id
+                        ? { ...v, gestionado: true }
+                        : v
+                )
+            );
+        } catch (error) {
+            console.error("❌ Error al marcar como gestionado:", error);
+        }
+
         cerrarModal();
-      };
+    };
 
     const exportarExcel = async () => {
         try {
@@ -87,25 +106,18 @@ const AccionesPage = () => {
     return (
         <div className="acciones-page">
             <img src={logo} alt="Mundo Filtro" className="logo" />
-            <h2 className="titulo">📲 Recordatorios por WhatsApp </h2>
+            <h2 className="titulo">📲 Recordatorios por WhatsApp</h2>
 
             <div className="acciones-contenido">
                 <div className="filtros-clientes">
                     <input
-                    className="input-filtro"
+                        className="input-filtro"
                         type="text"
                         placeholder="Nombre o Apellido..."
                         value={filtroNombre}
                         onChange={(e) => setFiltroNombre(e.target.value)}
                     />
-                    <label>
-                        <input
-                            type="checkbox"
-                            checked={soloPendientes}
-                            onChange={() => setSoloPendientes(!soloPendientes)}
-                        />
-                        Solo pendientes (6+ meses)
-                    </label>
+
                     <button onClick={exportarExcel}>📥 Descargar Excel</button>
                 </div>
 
@@ -123,24 +135,32 @@ const AccionesPage = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            {vehiculosFiltrados.map((v) => {
-                                const meses = calcularMeses(v.ultimo_servicio);
-                                return (
-                                    <tr key={v.vehiculo_id} className={meses >= 6 || !v.ultimo_servicio ? "pendiente" : ""}>
-                                        <td>{v.nombre} {v.apellido}</td>
-                                        <td>{v.telefono}</td>
-                                        <td>{v.marca} {v.modelo}</td>
-                                        <td>{v.dominio}</td>
-                                        <td>{v.ultimo_servicio ? dayjs(v.ultimo_servicio).format("DD/MM/YYYY") : "—"}</td>
-                                        <td>{meses !== null ? `${meses} meses` : "Sin registro"}</td>
-                                        <td>
-                                            <button className="btn-whatsapp" onClick={() => abrirModal(v)}>
-                                                <FaWhatsapp />
-                                            </button>
-                                        </td>
-                                    </tr>
-                                );
-                            })}
+                            {vehiculosFiltrados.length === 0 ? (
+                                <tr>
+                                    <td colSpan="7" style={{ textAlign: "center", padding: "20px", fontWeight: "bold", color: "green" }}>
+                                        ✅ ¡Todos los clientes fueron gestionados hasta el momento!
+                                    </td>
+                                </tr>
+                            ) : (
+                                vehiculosFiltrados.map((v) => {
+                                    const meses = calcularMeses(v.ultimo_servicio);
+                                    return (
+                                        <tr key={v.vehiculo_id} className={meses >= 6 || !v.ultimo_servicio ? "pendiente" : ""}>
+                                            <td>{v.nombre} {v.apellido}</td>
+                                            <td>{v.telefono}</td>
+                                            <td>{v.marca} {v.modelo}</td>
+                                            <td>{v.dominio}</td>
+                                            <td>{v.ultimo_servicio ? dayjs(v.ultimo_servicio).format("DD/MM/YYYY") : "—"}</td>
+                                            <td>{meses !== null ? `${meses} meses` : "Sin registro"}</td>
+                                            <td>
+                                                <button className="btn-whatsapp" onClick={() => abrirModal(v)}>
+                                                    <FaWhatsapp />
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    );
+                                })
+                            )}
                         </tbody>
                     </table>
                 </div>

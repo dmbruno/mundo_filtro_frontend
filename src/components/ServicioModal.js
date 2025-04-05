@@ -1,72 +1,132 @@
-import React, { useState } from "react";
-import "./ServicioModal.css";
+import React, { useState, useEffect } from "react";
+import "./ServicioModal.css"; // Estilos adicionales
 
-const ServicioModal = ({ servicio, cerrarModal, actualizarServicio, modoEdicionInicial = false }) => {
-  const [modoEdicion, setModoEdicion] = useState(modoEdicionInicial);
-  const [datosServicio, setDatosServicio] = useState({ ...servicio });
 
-  if (!servicio) return null;
+import { format } from 'date-fns';
 
+const ServicioModal = ({ servicio, cerrarModal, actualizarServicio }) => {
+  // Estado para controlar el modo de edición (si es necesario)
+  const [modoEdicion, setModoEdicion] = useState(false);
+
+  // Llenar los campos con los datos del servicio recibido
+  const [servicioDatos, setServicioDatos] = useState({
+    tipoServicio: servicio?.cambio_aceite || "",
+    km: servicio?.km || "",
+    fecha: servicio?.fecha_servicio
+      ? formatFechaInput(servicio.fecha_servicio)  // ✅ Usás tu formato corregido
+      : "",
+    dominio: servicio?.vehiculo?.dominio || "", // Asegúrate de que vehiculo no sea undefined
+    observaciones: servicio?.observaciones || "",
+  });
+
+  // Control de cambio en los campos
   const handleChange = (e) => {
-    setDatosServicio({
-      ...datosServicio,
+    setServicioDatos({
+      ...servicioDatos,
       [e.target.name]: e.target.value,
     });
   };
 
-  const guardarCambios = () => {
-    actualizarServicio(datosServicio);
+  const handleSave = () => {
+    // Aquí puedes agregar lógica para guardar los cambios del servicio.
+    actualizarServicio(servicioDatos);
     setModoEdicion(false);
   };
 
+  const formatFechaInput = (fechaString) => {
+    if (!fechaString) return "";
+
+    const fecha = new Date(fechaString);
+    fecha.setMinutes(fecha.getMinutes() + fecha.getTimezoneOffset()); // ✅ Corrección horaria
+    return format(fecha, "yyyy-MM-dd"); // ⚡ Formato para <input type="date">
+};
+
   return (
-    <div className="modal-servicio">
-      <div className="modal-content-servicio">
-        <div className="modal-header-servicio">
-          <div className="modal-notch-servicio"></div>
-          <h2 className="modal-title-servicio">
-            Cliente {servicio.cliente_nombre}
-            <br />
-            <span>Vehículo {servicio.vehiculo_nombre}</span>
-          </h2>
+    <div className="modal-overlay">
+      <div className="modal-content">
+        <h2>Servicio {servicio.id}</h2>
+
+        <div className="modal-info">
+          <p>
+            <strong>Cliente:</strong> {servicio.cliente?.nombre} {servicio.cliente?.apellido}
+          </p>
+          <p>
+            <strong>Vehículo:</strong> {servicio.vehiculo?.marca} {servicio.vehiculo?.modelo}
+          </p>
         </div>
 
-        <div className="modal-body-servicio">
-          <div className="input-group-servicio">
-            <label className="modal-label-servicio">Tipo de Servicio:</label>
-            <input type="text" name="cambio_aceite" value={datosServicio.cambio_aceite} onChange={handleChange} readOnly={!modoEdicion} />
-          </div>
-
-          <div className="input-group-servicio">
-            <label className="modal-label-servicio">KMs:</label>
-            <input type="text" name="kms" value={datosServicio.kms} onChange={handleChange} readOnly={!modoEdicion} />
-          </div>
-
-          <div className="input-group-servicio">
-            <label className="modal-label-servicio">Fecha:</label>
-            <input type="date" name="fecha_servicio" value={datosServicio.fecha_servicio} onChange={handleChange} readOnly={!modoEdicion} />
-          </div>
-
-          <div className="input-group-servicio">
-            <label className="modal-label-servicio">Dominio:</label>
-            <input type="text" name="dominio" value={datosServicio.dominio} readOnly />
-          </div>
-
-          <div className="input-group-servicio">
-            <label className="modal-label-servicio">Observaciones:</label>
-            <textarea name="notas" value={datosServicio.notas} onChange={handleChange} readOnly={!modoEdicion}></textarea>
-          </div>
+        <div className="form-group">
+          <label>Tipo de Servicio:</label>
+          <input
+            type="text"
+            name="tipoServicio"
+            value={servicioDatos.tipoServicio}
+            onChange={handleChange}
+            readOnly={!modoEdicion}
+          />
         </div>
 
-        <div className="modal-footer-servicio">
-          <button className="btn-salir-servicio" onClick={cerrarModal}>Salir</button>
+        <div className="form-group">
+          <label>Kilómetros:</label>
+          <input
+            type="text"
+            name="km"
+            value={servicioDatos.km}
+            onChange={handleChange}
+            readOnly={!modoEdicion}
+          />
+        </div>
+
+        <div className="form-group">
+          <label>Fecha:</label>
+          <input
+            type="date"
+            name="fecha"
+            value={servicioDatos.fecha}
+            onChange={handleChange}
+            readOnly={!modoEdicion}
+          />
+        </div>
+
+        <div className="form-group">
+          <label>Dominio:</label>
+          <input
+            type="text"
+            name="dominio"
+            value={servicioDatos.dominio}
+            onChange={handleChange}
+            readOnly={!modoEdicion}
+          />
+        </div>
+
+        <div className="form-group">
+          <label>Observaciones:</label>
+          <textarea
+            name="observaciones"
+            value={servicioDatos.observaciones}
+            onChange={handleChange}
+            readOnly={!modoEdicion}
+          />
+        </div>
+
+        <div className="modal-actions">
+          <button onClick={cerrarModal} className="btn-cerrar">
+            Cerrar
+          </button>
+
           {modoEdicion ? (
             <>
-              <button className="btn-cancelar-servicio" onClick={() => setModoEdicion(false)}>Cancelar</button>
-              <button className="btn-guardar-servicio" onClick={guardarCambios}>Guardar</button>
+              <button onClick={() => setModoEdicion(false)} className="btn-cancelar">
+                Cancelar
+              </button>
+              <button onClick={handleSave} className="btn-guardar">
+                Guardar
+              </button>
             </>
           ) : (
-            <button className="btn-editar-servicio" onClick={() => setModoEdicion(true)}>Editar</button>
+            <button onClick={() => setModoEdicion(true)} className="btn-editar">
+              Editar
+            </button>
           )}
         </div>
       </div>

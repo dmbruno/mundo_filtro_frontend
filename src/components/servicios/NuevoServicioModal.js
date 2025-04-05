@@ -1,18 +1,16 @@
 import React, { useState, useEffect } from "react";
-import api from "../../api"; // API para interactuar con el backend
-import "./NuevoServicioModal.css"; // Estilos del modal
+import api from "../../api";
+import "./NuevoServicioModal.css";
 import { toast } from "react-toastify";
 
-
-const NuevoServicioModal = ({ 
-    vehiculo, 
-    cliente, 
-    servicio,  // ✅ Aseguramos que se recibe correctamente
-    cerrarModal, 
-    cerrarListaServicios, 
-    actualizarServicios 
+const NuevoServicioModal = ({
+    vehiculo,
+    cliente,
+    servicio,
+    cerrarModal,
+    cerrarListaServicios,
+    actualizarServicios
 }) => {
-    // 📌 Estado inicial de un servicio nuevo o edición
     const [datosServicio, setDatosServicio] = useState({
         cambio_aceite: "",
         filtro_aceite: false,
@@ -23,10 +21,14 @@ const NuevoServicioModal = ({
         kms: "",
         notas: "",
         tipo_servicio: "",
+        fecha_servicio: "",
     });
 
-    // 📌 Si estamos editando, cargamos los datos del servicio seleccionado
+    const clienteFinal = cliente?.id ? cliente.id : vehiculo.cliente_id;
+
     useEffect(() => {
+        const hoy = new Date().toISOString().split('T')[0];
+
         if (servicio) {
             setDatosServicio({
                 cambio_aceite: servicio.cambio_aceite || "",
@@ -38,13 +40,16 @@ const NuevoServicioModal = ({
                 kms: servicio.kms || "",
                 notas: servicio.notas || "",
                 tipo_servicio: servicio.tipo_servicio || "",
+                fecha_servicio: servicio.fecha_servicio || hoy,
             });
+        } else {
+            setDatosServicio((prev) => ({
+                ...prev,
+                fecha_servicio: hoy,
+            }));
         }
     }, [servicio]);
 
-    const clienteFinal = cliente?.id ? cliente.id : vehiculo.cliente_id;
-
-    // 🔹 Manejo de cambios en los inputs
     const handleChange = (e) => {
         setDatosServicio({
             ...datosServicio,
@@ -52,7 +57,6 @@ const NuevoServicioModal = ({
         });
     };
 
-    // 🔹 Guardar un nuevo servicio
     const guardarServicio = async () => {
         try {
             await api.post("/servicios/", {
@@ -61,34 +65,31 @@ const NuevoServicioModal = ({
                 ...datosServicio,
             });
 
-            toast.success("✅ Servicio guardado correctamente", { autoClose: 3000 }); // 🔥 Mensaje de éxito
-
+            toast.success("✅ Servicio guardado correctamente", { autoClose: 3000 });
             cerrarModal();
-            actualizarServicios(); 
+            actualizarServicios();
             cerrarListaServicios();
         } catch (error) {
             console.error("❌ Error al guardar el servicio:", error);
         }
     };
 
-    // 🔹 Actualizar un servicio existente
     const guardarCambiosNuevo = async () => {
         try {
             await api.put(`/servicios/${servicio.id}`, datosServicio);
 
-            toast.success("✅ Servicio actualizado correctamente", { autoClose: 3000 }); // 🔥 Mensaje de éxito
-
+            toast.success("✅ Servicio actualizado correctamente", { autoClose: 3000 });
             actualizarServicios();
-            cerrarModal(); // ❌ Cierra modal de edición
-            cerrarListaServicios(); // ✅ Cierra ListaServiciosModal
+            cerrarModal();
+            cerrarListaServicios();
         } catch (error) {
             console.error("❌ Error al actualizar el servicio:", error);
         }
     };
 
     return (
-        <div className="modal-overlay">
-            <div className="modal-content-servicios">
+        <div className="nuevo-servicio-overlay">
+            <div className="nuevo-servicio-content">
                 <div className="modal-notch-servicios"></div>
                 <h2 className="modal-title">
                     {servicio ? "Editar Servicio" : "Nuevo Servicio"}
@@ -96,85 +97,145 @@ const NuevoServicioModal = ({
                 <p className="modal-subtitle">Cliente: {cliente?.nombre} {cliente?.apellido}</p>
                 <p className="modal-subtitle">Vehículo: {vehiculo?.marca} {vehiculo?.modelo}</p>
 
-                <div className="form-group-servicios">
-                    <label>Descripción del servicio</label>
-                    <input
-                        type="text"
-                        name="cambio_aceite"
-                        value={datosServicio.cambio_aceite}
-                        onChange={handleChange}
-                        placeholder="Ej: Cambio de aceite y filtros"
-                    />
+                {/* NUEVA GRID 2 COLUMNAS */}
+                <div className="nuevo-servicio-grid">
+
+                    {/* Primera Columna */}
+                    <div className="nuevo-servicio-col">
+                        <div className="form-group-servicios">
+                            <label>Descripción del servicio</label>
+                            <input
+                                type="text"
+                                name="cambio_aceite"
+                                value={datosServicio.cambio_aceite}
+                                onChange={handleChange}
+                                placeholder="Ej: Cambio de aceite y filtros"
+                            />
+                        </div>
+
+                        <div className="form-group-servicios">
+                            <label>KMs del Vehículo</label>
+                            <input
+                                type="number"
+                                name="kms"
+                                value={datosServicio.kms}
+                                onChange={handleChange}
+                                placeholder="Ej: 75000"
+                            />
+                        </div>
+
+                        <div className="form-group-servicios">
+                            <label>Fecha</label>
+                            <input
+                                type="date"
+                                name="fecha_servicio"
+                                value={datosServicio.fecha_servicio}
+                                onChange={handleChange}
+                            />
+                        </div>
+
+                        <div className="form-group-servicios">
+                            <label>Dominio</label>
+                            <input
+                                type="text"
+                                name="dominio"
+                                value={vehiculo?.dominio || ""}
+                                placeholder="Dominio..."
+                                disabled
+                            />
+                        </div>
+                    </div>
+
+                    {/* Segunda Columna */}
+                    <div className="nuevo-servicio-col">
+                        <div className="form-group-servicios">
+                            <label>Tipo de Servicio</label>
+                            <input
+                                type="text"
+                                name="tipo_servicio"
+                                value={datosServicio.tipo_servicio}
+                                onChange={handleChange}
+                                placeholder="Ej: Mantenimiento general"
+                            />
+                        </div>
+
+                        <div className="checkbox-group-servicios">
+                            <h4 className="checkbox-group-title">Filtros Cambiados:</h4>
+                            <label>
+                                <input
+                                    type="checkbox"
+                                    name="filtro_aceite"
+                                    checked={datosServicio.filtro_aceite}
+                                    onChange={handleChange}
+                                />
+                                Filtro de Aceite
+                            </label>
+                            <label>
+                                <input
+                                    type="checkbox"
+                                    name="filtro_aire"
+                                    checked={datosServicio.filtro_aire}
+                                    onChange={handleChange}
+                                />
+                                Filtro de Aire
+                            </label>
+                            <label>
+                                <input
+                                    type="checkbox"
+                                    name="filtro_combustible"
+                                    checked={datosServicio.filtro_combustible}
+                                    onChange={handleChange}
+                                />
+                                Filtro de Combustible
+                            </label>
+                            <label>
+                                <input
+                                    type="checkbox"
+                                    name="filtro_habitaculo"
+                                    checked={datosServicio.filtro_habitaculo}
+                                    onChange={handleChange}
+                                />
+                                Filtro de Habitáculo
+                            </label>
+                        </div>
+                    </div>
+
                 </div>
 
-                <div className="form-group-servicios">
-                    <label>Tipo de Servicio</label>
-                    <input
-                        type="text"
-                        name="tipo_servicio"
-                        value={datosServicio.tipo_servicio}
-                        onChange={handleChange}
-                        placeholder="Ej: Mantenimiento general"
-                    />
+                {/* Segunda fila (textarea abajo de todo) */}
+                <div className="segunda-columna">
+
+                    <div className="form-group-servicios">
+                        <label>Otros Servicios</label>
+                        <textarea
+                            name="otros_servicios"
+                            value={datosServicio.otros_servicios}
+                            onChange={handleChange}
+                            placeholder="Ej: Cambio de pastillas de freno"
+                        />
+                    </div>
+
+                    <div className="form-group-servicios">
+                        <label>Notas</label>
+                        <textarea
+                            name="notas"
+                            value={datosServicio.notas}
+                            onChange={handleChange}
+                            placeholder="Comentarios adicionales..."
+                        />
+                    </div>
                 </div>
 
-                <div className="form-group-servicios">
-                    <label>KMs del Vehículo</label>
-                    <input
-                        type="number"
-                        name="kms"
-                        value={datosServicio.kms}
-                        onChange={handleChange}
-                        placeholder="Ej: 75000"
-                    />
-                </div>
-
-                <div className="checkbox-group-servicios">
-                    <h4 className="checkbox-group-title">Filtros Cambiados:</h4>
-                    <label>
-                        <input type="checkbox" name="filtro_aceite" checked={datosServicio.filtro_aceite} onChange={handleChange} />
-                        Filtro de Aceite
-                    </label>
-                    <label>
-                        <input type="checkbox" name="filtro_aire" checked={datosServicio.filtro_aire} onChange={handleChange} />
-                        Filtro de Aire
-                    </label>
-                    <label>
-                        <input type="checkbox" name="filtro_combustible" checked={datosServicio.filtro_combustible} onChange={handleChange} />
-                        Filtro de Combustible
-                    </label>
-                    <label>
-                        <input type="checkbox" name="filtro_habitaculo" checked={datosServicio.filtro_habitaculo} onChange={handleChange} />
-                        Filtro de Habitáculo
-                    </label>
-                </div>
-
-                <div className="form-group-servicios">
-                    <label className="label-servicios">Otros Servicios</label>
-                    <textarea
-                        name="otros_servicios"
-                        value={datosServicio.otros_servicios}
-                        onChange={handleChange}
-                        placeholder="Ej: Cambio de pastillas de freno"
-                    />
-                </div>
-
-                <div className="form-group-servicios">
-                    <label className="label-servicios">Notas</label>
-                    <textarea
-                        name="notas"
-                        value={datosServicio.notas}
-                        onChange={handleChange}
-                        placeholder="Comentarios adicionales..."
-                    />
-                </div>
-
+                {/* Botones */}
                 <div className="modal-actions">
                     <button className="btn-cerrar-servicio" onClick={cerrarModal}>Cancelar</button>
-                    <button className="btn-guardar-servicio" onClick={servicio ? guardarCambiosNuevo : guardarServicio}>
+                    <button
+                        className="btn-guardar-servicio"
+                        onClick={servicio ? guardarCambiosNuevo : guardarServicio}>
                         {servicio ? "Actualizar Servicio" : "Guardar Servicio"}
                     </button>
                 </div>
+
             </div>
         </div>
     );
