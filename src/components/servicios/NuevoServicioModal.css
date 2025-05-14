@@ -20,15 +20,15 @@
 .nuevo-servicio-content {
   background: #fdfdfd;
     padding: 35px 35px;
-    /* 🔥 Antes 30px 45px */
+    
     border-radius: 15px;
     text-align: center;
     width: 950px;
     max-width: 95%;
     margin-top: 20px;
-    /* 🔥 Antes 50px */
+    
     margin-bottom: 30px;
-    /* 🔥 También achico abajo */
+    
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
     overflow-y: visible;
     margin-top: 80px;
@@ -67,7 +67,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  /* 🔥 Que todo quede bien distribuido */
+  
   gap: 20px;
 }
 
@@ -105,7 +105,7 @@ textarea {
 
 textarea {
   height: 50px;
-  /* 🔥 Más alto que antes para más espacio */
+  
 }
 
 /* Cuadradito de filtros */
@@ -128,7 +128,7 @@ textarea {
 .checkbox-group-title {
   font-weight: bold;
   font-size: 20px;
-  text-align: center;
+  align-self: center;
   margin-bottom: 20px;
   color: black;
 }
