@@ -1,20 +1,15 @@
 .nuevo-servicio-overlay {
-  all: initial;
   position: fixed;
-  top: 0;
+  top: -100px;
   left: 0;
-  right: 0;
-  bottom: 0;
-  
+  width: 100vw;
+  height: 100vh;
   backdrop-filter: blur(2px);
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 9999;
-  width: 140%;
-  margin-left: -130px;
-  padding-bottom: 150px;
-  
+  padding: 20px;
 }
 
 .nuevo-servicio-content {
