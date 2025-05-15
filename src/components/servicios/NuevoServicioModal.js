@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import api from "../../api";
 import "./NuevoServicioModal.css";
 import { toast } from "react-toastify";
+import { createPortal } from "react-dom";
+
 
 const NuevoServicioModal = ({
     vehiculo,
@@ -87,7 +89,7 @@ const NuevoServicioModal = ({
         }
     };
 
-    return (
+    return createPortal(
         <div className="nuevo-servicio-overlay">
             <div className="nuevo-servicio-content">
                 <div className="modal-notch-servicios"></div>
@@ -96,11 +98,7 @@ const NuevoServicioModal = ({
                 </h2>
                 <p className="modal-subtitle">Cliente: {cliente?.nombre} {cliente?.apellido}</p>
                 <p className="modal-subtitle">Vehículo: {vehiculo?.marca} {vehiculo?.modelo}</p>
-
-                {/* NUEVA GRID 2 COLUMNAS */}
                 <div className="nuevo-servicio-grid">
-
-                    {/* Primera Columna */}
                     <div className="nuevo-servicio-col">
                         <div className="form-group-servicios">
                             <label>Descripción del servicio</label>
@@ -237,7 +235,8 @@ const NuevoServicioModal = ({
                 </div>
 
             </div>
-        </div>
+        </div>,
+        document.getElementById("portal-root")
     );
 };
 
