@@ -147,7 +147,7 @@ const ServiciosPage = () => {
 
     return (
         <div className="servicios-container">
-            <img src={logo} alt="Mundo Filtro" className="logo" />
+            <img src={logo} alt="Mundo Filtro" className="logoServicios" />
             <h1 className="titulo">🔧 Servicios</h1>
 
             <div className="filtro-container">

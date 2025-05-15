@@ -13,6 +13,15 @@
     padding-top: 20px;
     
   }
+  .logoUsuarios{
+    position: sticky;
+    top: 10px;
+    z-index: 10;
+    width: 300px; /* 🔽 Achicado desde 400px */
+    margin-bottom: 10px;
+    background-color: black;
+  }
+
   
   /* Encabezado con botón */
   .usuarios-header {

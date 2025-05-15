@@ -105,13 +105,13 @@ const AccionesPage = () => {
 
     return (
         <div className="acciones-page">
-            <img src={logo} alt="Mundo Filtro" className="logo" />
-            <h2 className="titulo">📲 Recordatorios por WhatsApp</h2>
+            <img src={logo} alt="Mundo Filtro" className="logoAcciones" />
+            <h2 className="tituloAcciones">📲 Recordatorios por WhatsApp</h2>
 
             <div className="acciones-contenido">
-                <div className="filtros-clientes">
+                <div className="filtros-clientes-acciones">
                     <input
-                        className="input-filtro"
+                        className="input-filtro-acciones"
                         type="text"
                         placeholder="Nombre o Apellido..."
                         value={filtroNombre}
@@ -121,7 +121,7 @@ const AccionesPage = () => {
                     <button onClick={exportarExcel}>📥 Descargar Excel</button>
                 </div>
 
-                <div className="tabla-scroll">
+                <div className="tabla-scroll-acciones">
                     <table className="tabla-clientes">
                         <thead>
                             <tr>

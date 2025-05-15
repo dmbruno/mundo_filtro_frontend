@@ -204,7 +204,7 @@ const ClientesPage = () => {
 
   return (
     <div className="clientes-container">
-      <img src={logo} alt="Mundo Filtro" className="logo" />
+      <img src={logo} alt="Mundo Filtro" className="logoClientes" />
       <h1 className="titulo">👥 Clientes</h1>
       <div className="filtro-container">
         <input type="text" placeholder="Nombre..." value={filtroNombre} onChange={(e) => setFiltroNombre(e.target.value)} />
@@ -214,7 +214,7 @@ const ClientesPage = () => {
        
       </div>
 
-      <div className="table-container">
+      <div className="table-container-clientes">
         <table>
           <thead>
             <tr className="encabezado">

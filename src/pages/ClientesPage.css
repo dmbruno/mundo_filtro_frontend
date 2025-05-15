@@ -1,35 +1,40 @@
 /* Contenedor principal de la página de clientes */
 .clientes-container {
-    width: 100%;
-    min-height: 100vh;
+    position: relative;
+    top: -50px;
+    left: 20px; /* ⬅️ Volvé al centro */
+    max-width: 1200px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-    padding-top: 20px;
-    
-
 }
 
-.titulo{
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif ;  
+
+.titulo {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     text-align: center;
-    margin-top: 50px;
+    margin-top: 0px;
     margin-bottom: 20px;
     font-size: 26px;
+    z-index: 10;
 }
 
 /* Logo de Mundo Filtro */
-.logo {
-    width: 400px;
-    margin-bottom: 20px;
+.logoClientes {
+    position: sticky;
+    top: 10px;
+    z-index: 10;
+    width: 300px; /* 🔽 Achicado desde 400px */
+    margin-bottom: 10px;
+    background-color: black;
 }
 
 /* Barra de filtros */
 .filtro-container {
     display: flex;
     justify-content: center;
-    
+
     gap: 10px;
     margin-bottom: 20px;
     width: 80%;
@@ -61,7 +66,8 @@
     width: 200px;
     justify-content: center;
     align-items: center;
-    gap: 8px; /* Espacio entre emoji y texto */
+    gap: 8px;
+    /* Espacio entre emoji y texto */
     box-shadow: 0 2px 6px rgba(255, 255, 255, 0.3);
     transition: background-color 0.3s ease, transform 0.2s ease;
 }
@@ -79,19 +85,20 @@
 
 
 /* Contenedor de la tabla para limitar la altura y permitir scroll */
-.table-container {
+.table-container-clientes {
     width: 100%;
-    /* Aumenta el ancho de la tabla */
-    max-width: 1200px;
+    max-width: 100%;
     overflow-y: auto;
-    max-height: 400px;
-    
-    /* Limita la altura para que solo se vean 10 filas */
+    max-height: 420px;
+    /* Te asegura ver 10 filas en 1366x768 */
     border-radius: 10px;
+    margin: 0 auto;
     
+    border: 1px solid white;
+    /* Centrado horizontal */
 }
 
-.encabezado th{
+.encabezado th {
     text-align: center;
 }
 
@@ -108,7 +115,7 @@ thead {
     position: sticky;
     top: 0;
     background-color: #333;
-    
+
     /* Fondo fijo para que se mantenga visible */
     z-index: 2;
 }

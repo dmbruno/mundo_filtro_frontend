@@ -152,7 +152,7 @@ const UsuariosPage = () => {
 
   return (
     <div className="usuarios-page">
-      <img src={logo} alt="Mundo Filtro" className="logo" />
+      <img src={logo} alt="Mundo Filtro" className="logoUsuarios" />
 
       <div className="usuarios-header">
         <h2 className="titulo">👥 Gestión de Usuarios</h2>

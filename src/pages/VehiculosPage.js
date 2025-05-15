@@ -239,7 +239,7 @@ const VehiculosPage = () => {
 
     return (
         <div className="vehiculos-container">
-            <img src={logo} alt="Mundo Filtro" className="logo" />
+            <img src={logo} alt="Mundo Filtro" className="logoVehiculos" />
             <h1 className="titulo">🚗 Vehículos</h1>
 
             <div className="filtro-container">
@@ -270,7 +270,7 @@ const VehiculosPage = () => {
 
             </div>
 
-            <div className="tabla-scroll-container">
+            <div className="tabla-scroll-container-vehiculos">
                 <table className="vehiculos-table">
                     <thead>
                         <tr className="encabezado">
