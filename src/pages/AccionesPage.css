@@ -137,3 +137,92 @@
     background-color: #1ebe5d;
     transform: scale(1.05);
 }
+
+.modal-overlay-acciones {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.6); /* Fondo oscuro translúcido */
+    display: flex;
+    justify-content: center;
+    align-items: left;
+    z-index: 9999;
+    padding: 20px;
+}
+
+.modal-content-mensaje-acciones {
+    background: #fdfdfd; /* Fondo blanco real */
+    margin-top: 200px;
+    padding: 30px;
+    border-radius: 15px;
+    max-width: 600px;
+    width: 100%;
+    max-height: 350px;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+    text-align: center;
+}
+
+.titulo-mensje-acciones {
+    font-size: 22px;
+    font-weight: bold;
+    color: black;
+    margin-bottom: 15px;
+}
+
+.modal-content-mensaje-acciones p {
+    font-size: 16px;
+    color: #333;
+    margin-bottom: 20px;
+    line-height: 1.5;
+}
+
+.modal-content-mensaje-acciones textarea {
+    width: 80%;
+    padding: 12px;
+    font-size: 14px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    resize: none;
+    height: 120px;
+    color: #222;
+    background-color: #f2f2f2;
+    box-shadow: inset 0px 0px 4px rgba(0, 0, 0, 0.1);
+}
+
+.modal-buttons-acciones {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+}
+
+.btn-enviar-acciones,
+.btn-cancelar-acciones {
+    flex: 1;
+    padding: 12px;
+    font-size: 15px;
+    font-weight: bold;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.btn-enviar-acciones {
+    background-color: #25D366;
+    color: white;
+}
+
+.btn-cancelar-acciones {
+    background-color: #ff4d4d;
+    color: white;
+}
+
+.btn-enviar-acciones:hover,
+.btn-cancelar-acciones:hover {
+    transform: scale(1.05);
+    opacity: 0.95;
+}

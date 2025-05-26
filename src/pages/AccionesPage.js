@@ -165,8 +165,8 @@ const AccionesPage = () => {
                 </div>
 
                 {modalAbierto && (
-                    <div className="modal-overlay">
-                        <div className="modal-content-mensaje">
+                    <div className="modal-overlay-acciones">
+                        <div className="modal-content-mensaje-acciones">
                             <h3 className="titulo-mensje">✍️ Personalizar Mensaje</h3>
                             <p>
                                 Cliente: <strong>{vehiculoSeleccionado.nombre} {vehiculoSeleccionado.apellido}</strong><br />
@@ -177,9 +177,9 @@ const AccionesPage = () => {
                                 onChange={(e) => setMensajePersonalizado(e.target.value)}
                                 rows="6"
                             ></textarea>
-                            <div className="modal-buttons">
-                                <button className="btn-cancelar" onClick={cerrarModal}>Cancelar</button>
-                                <button className="btn-enviar" onClick={enviarWhatsApp}>Enviar</button>
+                            <div className="modal-buttons-acciones">
+                                <button className="btn-cancelar-acciones" onClick={cerrarModal}>Cancelar</button>
+                                <button className="btn-enviar-acciones" onClick={enviarWhatsApp}>Enviar</button>
                             </div>
                         </div>
                     </div>
