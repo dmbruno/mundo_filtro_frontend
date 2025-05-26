@@ -62,18 +62,17 @@ const AccionesPage = () => {
 
     const enviarWhatsApp = async () => {
         if (!vehiculoSeleccionado || !vehiculoSeleccionado.telefono) return;
-
-        const tel = vehiculoSeleccionado.telefono.replace(/\D/g, "");
+    
+        const telRaw = vehiculoSeleccionado.telefono;
+        const tel = String(parseInt(telRaw)).replace(/\D/g, "");
         const mensajeCodificado = encodeURIComponent(mensajePersonalizado);
-
+    
         window.open(`https://wa.me/54${tel}?text=${mensajeCodificado}`, "_blank");
-
-        // 🔥 Marcamos el vehículo como gestionado en el backend
+    
         try {
             await api.put(`/acciones/marcar-gestionado/${vehiculoSeleccionado.vehiculo_id}`);
             console.log("✅ Vehículo marcado como gestionado");
-
-            // ✅ Actualizamos la tabla local
+    
             setVehiculos((prevVehiculos) =>
                 prevVehiculos.map((v) =>
                     v.vehiculo_id === vehiculoSeleccionado.vehiculo_id
@@ -84,7 +83,7 @@ const AccionesPage = () => {
         } catch (error) {
             console.error("❌ Error al marcar como gestionado:", error);
         }
-
+    
         cerrarModal();
     };
 
